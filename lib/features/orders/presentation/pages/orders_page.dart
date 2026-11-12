@@ -11,7 +11,7 @@ import 'package:rayyan_driver/features/orders/presentation/widgets/order_filter_
 import 'package:rayyan_driver/features/orders/presentation/widgets/order_search_box.dart';
 import 'package:rayyan_driver/features/orders/presentation/widgets/orders_slivers.dart';
 
-/// "Past Orders" (Figma `5000:99925`) and "Re-Assigned" (`5000:100005`).
+/// Order History (Figma `5000:99925`) and "Re-Assigned" (`5000:100005`).
 class OrdersPage extends StatelessWidget {
   const OrdersPage({required this.scope, super.key});
 
@@ -42,7 +42,7 @@ class OrdersView extends StatelessWidget {
     return TintedScaffold(
       appBar: AppTopBar(
         title: switch (scope) {
-          OrderListScope.past => l10n.pastOrdersTitle,
+          OrderListScope.past => l10n.orderHistoryTitle,
           OrderListScope.reassigned => l10n.reassignedTitle,
           OrderListScope.today => l10n.homeTodaysOrders,
         },

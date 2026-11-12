@@ -16,15 +16,24 @@ enum OrderFilter {
 
   final DeliveryStatus? _status;
 
-  /// Chips of each list, in Figma order.
+  /// Chips of each list, in Figma order. Home (`5665:38795`) is New Order,
+  /// Delivered and Cancelled.
   static List<OrderFilter> forScope(OrderListScope scope) => switch (scope) {
-    OrderListScope.today => const [all, newOrder, orderPicked, dropOff, failed],
+    OrderListScope.today => const [newOrder, delivered, cancelled],
     OrderListScope.past ||
     OrderListScope.reassigned => const [all, delivered, cancelled, failed],
   };
 
-  bool matches(DeliveryOrder order) =>
-      _status == null || (order.outcome ?? order.status) == _status;
+  bool matches(DeliveryOrder order) {
+    final status = order.outcome ?? order.status;
+    return switch (this) {
+      // Picked up and at drop-off stay under New Order, so an order does
+      // not leave Home between assignment and delivery.
+      OrderFilter.newOrder => status.isActive,
+      OrderFilter.all => true,
+      _ => status == _status,
+    };
+  }
 
   /// Orders matching this chip and [query] (order number or customer name,
   /// "#" and case ignored).

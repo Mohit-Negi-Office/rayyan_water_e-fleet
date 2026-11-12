@@ -6,11 +6,16 @@ import 'package:rayyan_driver/features/orders/domain/entities/order_list_scope.d
 import 'package:rayyan_driver/features/orders/domain/usecases/order_usecases.dart';
 import 'package:rayyan_driver/features/orders/presentation/bloc/orders_list_state.dart';
 
-/// Home's "Todays Orders", Past Orders and Re-Assigned for [scope].
+/// Home's "Todays Orders" and Order History for [scope].
 @injectable
 class OrdersListCubit extends Cubit<OrdersListState> {
   OrdersListCubit(this._getOrders, @factoryParam this.scope)
-    : super(OrdersListState(filters: OrderFilter.forScope(scope)));
+    : super(
+        OrdersListState(
+          filters: OrderFilter.forScope(scope),
+          filter: OrderFilter.forScope(scope).first,
+        ),
+      );
 
   final GetOrders _getOrders;
   final OrderListScope scope;

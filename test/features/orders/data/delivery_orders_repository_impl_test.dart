@@ -39,21 +39,32 @@ void main() {
           Err() => fail('no orders'),
         };
 
-    test('lists today, past and re-assigned orders', () async {
-      expect(await orders(OrderListScope.today), hasLength(6));
-      expect(await orders(OrderListScope.past), hasLength(3));
+    test('lists today, order history and re-assigned orders', () async {
+      final today = await orders(OrderListScope.today);
+      expect(today, hasLength(8));
+      expect(today.map((order) => order.number), contains('71864586936'));
+      expect(
+        today.map((order) => order.number),
+        isNot(contains('71864586933')),
+      );
+      expect(await orders(OrderListScope.past), hasLength(5));
       expect(await orders(OrderListScope.reassigned), hasLength(4));
     });
 
-    test('a delivered order moves to Past Orders', () async {
-      final result = await repository.completeDelivery(
-        '71864586930',
-        cashCollected: false,
-      );
-      expect((result as Success).value.status, DeliveryStatus.delivered);
-      expect(await orders(OrderListScope.today), hasLength(5));
-      expect(await orders(OrderListScope.past), hasLength(4));
-    });
+    test(
+      'a delivery completed today stays on Home and joins history',
+      () async {
+        final result = await repository.completeDelivery(
+          '71864586930',
+          cashCollected: false,
+        );
+        expect((result as Success).value.status, DeliveryStatus.delivered);
+        final today = await orders(OrderListScope.today);
+        expect(today, hasLength(8));
+        expect(today.map((order) => order.number), contains('71864586930'));
+        expect(await orders(OrderListScope.past), hasLength(6));
+      },
+    );
 
     test('a re-assigned order keeps the reason and leaves today', () async {
       final result = await repository.reassign('71864586927', 'Not well');
@@ -70,7 +81,7 @@ void main() {
         '',
       );
       expect((result as Success).value.reason, 'Package damaged');
-      expect(await orders(OrderListScope.today), hasLength(6));
+      expect(await orders(OrderListScope.today), hasLength(8));
     });
 
     test('an unknown order is a server failure', () async {

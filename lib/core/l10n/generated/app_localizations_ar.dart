@@ -2286,6 +2286,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get homeTodaysOrders => 'طلبات اليوم';
 
   @override
+  String ordersFilterCount(String label, int count) {
+    return '$label ($count)';
+  }
+
+  @override
+  String get orderHistoryTitle => 'سجل الطلبات';
+
+  @override
   String get ordersSearchHint => 'ابحث عن طلب';
 
   @override

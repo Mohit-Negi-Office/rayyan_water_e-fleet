@@ -3950,6 +3950,18 @@ abstract class AppLocalizations {
   /// **'Todays Orders'**
   String get homeTodaysOrders;
 
+  /// No description provided for @ordersFilterCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} ({count})'**
+  String ordersFilterCount(String label, int count);
+
+  /// No description provided for @orderHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Order History'**
+  String get orderHistoryTitle;
+
   /// No description provided for @ordersSearchHint.
   ///
   /// In en, this message translates to:

@@ -12,14 +12,15 @@ import 'package:rayyan_driver/features/orders/domain/entities/order_list_scope.d
 import 'package:rayyan_driver/features/orders/presentation/widgets/order_status_label.dart';
 import 'package:rayyan_driver/features/orders/presentation/widgets/order_status_x.dart';
 
-/// An order in a list (Figma Home `5665:38806`, Past Orders `5000:99930`,
-/// Re-Assigned `5000:100020`). Today's orders also show the payment and
-/// the customer; past and re-assigned ones end in a chevron.
+/// An order in a list (Figma Home `5912:36798` / `5665:38806`, Order History
+/// `5000:99930`, Re-Assigned `5000:100020`). [expanded] cards show the
+/// payment and the customer; delivered and cancelled ones end in a chevron.
 class OrderCard extends StatelessWidget {
   const OrderCard({
     required this.order,
     required this.scope,
     required this.onTap,
+    required this.expanded,
     super.key,
   });
 
@@ -29,6 +30,10 @@ class OrderCard extends StatelessWidget {
   final DeliveryOrder order;
   final OrderListScope scope;
   final VoidCallback onTap;
+
+  /// New orders still out for delivery. Delivered and cancelled cards are
+  /// the shorter row.
+  final bool expanded;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +58,7 @@ class OrderCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: _rowGap),
-              if (scope == OrderListScope.today) ...[
+              if (expanded) ...[
                 _TodayStatusRow(order: order),
                 const SizedBox(height: _rowGap),
                 const GradientRule(),
@@ -63,7 +68,11 @@ class OrderCard extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: _StatusBlock(order: order, scope: scope),
+                      child: _StatusBlock(
+                        order: order,
+                        scope: scope,
+                        expanded: false,
+                      ),
                     ),
                     const _Chevron(),
                   ],
@@ -90,7 +99,11 @@ class _TodayStatusRow extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: _StatusBlock(order: order, scope: OrderListScope.today),
+          child: _StatusBlock(
+            order: order,
+            scope: OrderListScope.today,
+            expanded: true,
+          ),
         ),
         if (payment != null)
           Column(
@@ -114,10 +127,15 @@ class _TodayStatusRow extends StatelessWidget {
 
 /// Status, then "3 Items | 08:00 AM-10:00 AM" (or the day it closed).
 class _StatusBlock extends StatelessWidget {
-  const _StatusBlock({required this.order, required this.scope});
+  const _StatusBlock({
+    required this.order,
+    required this.scope,
+    required this.expanded,
+  });
 
   final DeliveryOrder order;
   final OrderListScope scope;
+  final bool expanded;
 
   String? _when(BuildContext context) {
     final locale = Localizations.localeOf(context).languageCode;
@@ -125,9 +143,9 @@ class _StatusBlock extends StatelessWidget {
     final end = order.slotEnd;
     final closed = order.closedAt;
     return switch (scope) {
-      OrderListScope.today when start != null && end != null =>
+      OrderListScope.today when expanded && start != null && end != null =>
         AppDateFormatter.timeRange(start, end, locale, isCompact: true),
-      OrderListScope.past when closed != null =>
+      OrderListScope.today || OrderListScope.past when closed != null =>
         order.status == DeliveryStatus.delivered
             ? '${AppDateFormatter.fullDate(closed, locale)} | '
                   '${AppDateFormatter.time(closed, locale)}'

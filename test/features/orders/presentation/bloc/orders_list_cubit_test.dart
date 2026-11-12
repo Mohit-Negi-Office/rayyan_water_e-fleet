@@ -31,8 +31,19 @@ void main() {
 
   OrdersListCubit build() => OrdersListCubit(getOrders, OrderListScope.today);
 
-  test('starts loading, with the chips of its list', () {
-    expect(build().state, OrdersListState(filters: todayFilters));
+  OrdersListState todayState({
+    OrderFilter? filter,
+    String query = '',
+    OrdersLoad load = const OrdersLoad.loading(),
+  }) => OrdersListState(
+    filters: todayFilters,
+    filter: filter ?? todayFilters.first,
+    query: query,
+    load: load,
+  );
+
+  test('starts on New Order, with the chips of its list', () {
+    expect(build().state, todayState());
   });
 
   blocTest<OrdersListCubit, OrdersListState>(
@@ -45,11 +56,8 @@ void main() {
     },
     act: (cubit) => cubit.load(),
     expect: () => [
-      OrdersListState(filters: todayFilters),
-      OrdersListState(
-        filters: todayFilters,
-        load: const OrdersLoad.loaded([_order]),
-      ),
+      todayState(),
+      todayState(load: const OrdersLoad.loaded([_order])),
     ],
   );
 
@@ -70,15 +78,9 @@ void main() {
     },
     skip: 1,
     expect: () => [
-      OrdersListState(
-        filters: todayFilters,
-        load: const OrdersLoad.failure(NetworkFailure()),
-      ),
-      OrdersListState(filters: todayFilters),
-      OrdersListState(
-        filters: todayFilters,
-        load: const OrdersLoad.loaded([_order]),
-      ),
+      todayState(load: const OrdersLoad.failure(NetworkFailure())),
+      todayState(),
+      todayState(load: const OrdersLoad.loaded([_order])),
     ],
   );
 
@@ -86,15 +88,11 @@ void main() {
     'keeps the chip and the search text',
     build: build,
     act: (cubit) => cubit
-      ..filterChanged(OrderFilter.dropOff)
+      ..filterChanged(OrderFilter.delivered)
       ..queryChanged('586'),
     expect: () => [
-      OrdersListState(filters: todayFilters, filter: OrderFilter.dropOff),
-      OrdersListState(
-        filters: todayFilters,
-        filter: OrderFilter.dropOff,
-        query: '586',
-      ),
+      todayState(filter: OrderFilter.delivered),
+      todayState(filter: OrderFilter.delivered, query: '586'),
     ],
   );
 }

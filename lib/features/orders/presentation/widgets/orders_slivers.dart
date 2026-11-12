@@ -8,6 +8,8 @@ import 'package:rayyan_driver/core/widgets/states/app_empty_view.dart';
 import 'package:rayyan_driver/core/widgets/states/app_error_view.dart';
 import 'package:rayyan_driver/core/widgets/states/app_loading_view.dart';
 import 'package:rayyan_driver/features/orders/domain/entities/delivery_order.dart';
+import 'package:rayyan_driver/features/orders/domain/entities/order_filter.dart';
+import 'package:rayyan_driver/features/orders/domain/entities/order_list_scope.dart';
 import 'package:rayyan_driver/features/orders/presentation/bloc/orders_list_cubit.dart';
 import 'package:rayyan_driver/features/orders/presentation/bloc/orders_list_state.dart';
 import 'package:rayyan_driver/features/orders/presentation/widgets/order_card.dart';
@@ -46,12 +48,19 @@ class OrdersSliver extends StatelessWidget {
         OrdersLoaded(:final orders) => _cards(
           context,
           state.filter.apply(orders, query: state.query),
+          expanded:
+              cubit.scope == OrderListScope.today &&
+              state.filter == OrderFilter.newOrder,
         ),
       },
     );
   }
 
-  Widget _cards(BuildContext context, List<DeliveryOrder> orders) {
+  Widget _cards(
+    BuildContext context,
+    List<DeliveryOrder> orders, {
+    required bool expanded,
+  }) {
     final l10n = context.l10n;
     if (orders.isEmpty) {
       return SliverToBoxAdapter(
@@ -73,6 +82,7 @@ class OrdersSliver extends StatelessWidget {
             key: ValueKey(order.id),
             order: order,
             scope: scope,
+            expanded: expanded,
             onTap: () => _open(context, order),
           );
         },

@@ -13,8 +13,9 @@ import 'package:rayyan_driver/features/orders/domain/entities/order_list_scope.d
 import 'package:rayyan_driver/features/orders/domain/entities/payment_status.dart';
 
 /// Sample orders kept in memory, so actions show their result for the
-/// rest of the session: a delivered order moves to Past Orders, a
-/// re-assigned one to Re-Assigned, a failed one stays in today's list.
+/// rest of the session: a delivered order joins Order History and stays
+/// on Home for the rest of the day, a re-assigned one leaves Home, a
+/// failed one stays in today's list.
 @LazySingleton(as: OrdersRemoteDataSource, env: [AppEnvironment.mock])
 final class OrdersMockDataSource implements OrdersRemoteDataSource {
   OrdersMockDataSource(Clock clock) : _now = clock.now() {
@@ -56,8 +57,24 @@ final class OrdersMockDataSource implements OrdersRemoteDataSource {
     await Future<void>.delayed(_latency);
     return [
       for (final o in _orders.values)
-        if (o.scope == scope) _summary(o),
+        if (_listedIn(o, scope)) _summary(o),
     ];
+  }
+
+  /// Home also shows orders delivered or cancelled today, even after they
+  /// have moved into Order History.
+  bool _listedIn(MockOrder order, OrderListScope scope) {
+    if (order.scope == scope) return true;
+    if (scope != OrderListScope.today) return false;
+    final closed = order.closedAt;
+    if (closed == null) return false;
+    final closedToday =
+        closed.year == _now.year &&
+        closed.month == _now.month &&
+        closed.day == _now.day;
+    if (!closedToday) return false;
+    return order.status == DeliveryStatus.delivered ||
+        order.status == DeliveryStatus.cancelled;
   }
 
   @override

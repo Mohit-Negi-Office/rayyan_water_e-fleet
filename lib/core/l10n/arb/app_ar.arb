@@ -818,6 +818,8 @@
   "authContactUs": "تواصل معنا",
   "homeCurrentTime": "الوقت الحالي",
   "homeTodaysOrders": "طلبات اليوم",
+  "ordersFilterCount": "{label} ({count})",
+  "orderHistoryTitle": "سجل الطلبات",
   "ordersSearchHint": "ابحث عن طلب",
   "pastOrdersTitle": "الطلبات السابقة",
   "reassignedTitle": "المعاد تعيينها",

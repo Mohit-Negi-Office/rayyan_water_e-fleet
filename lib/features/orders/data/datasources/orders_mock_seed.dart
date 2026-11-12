@@ -33,8 +33,9 @@ final class MockOrder {
   final int totalMinor;
 }
 
-/// Sample orders matching the Figma frames: today's orders in every stage,
-/// two delivered and one failed past order, and re-assigned orders.
+/// Sample orders matching the Figma frames: today's orders, including
+/// deliveries and cancellations closed today, older history, and
+/// re-assigned orders.
 List<MockOrder> seedMockOrders(DateTime now) {
   DateTime today(int hour) => DateTime(now.year, now.month, now.day, hour);
   final pastDay = DateTime(2025, 2, 14, 9, 32);
@@ -99,6 +100,18 @@ List<MockOrder> seedMockOrders(DateTime now) {
       DeliveryStatus.failed,
       closedAt: DateTime(2025, 2, 14),
       reason: 'Customer not available',
+    ),
+    order(
+      '71864586936',
+      p,
+      DeliveryStatus.delivered,
+      closedAt: DateTime(now.year, now.month, now.day, 9, 32),
+    ),
+    order(
+      '71864586937',
+      p,
+      DeliveryStatus.cancelled,
+      closedAt: DateTime(now.year, now.month, now.day, 11, 5),
     ),
     for (final (i, outcome) in const [
       DeliveryStatus.delivered,

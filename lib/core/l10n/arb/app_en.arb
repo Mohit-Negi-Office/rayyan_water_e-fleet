@@ -1462,6 +1462,18 @@
   "authContactUs": "Contact Us",
   "homeCurrentTime": "Current Time",
   "homeTodaysOrders": "Todays Orders",
+  "ordersFilterCount": "{label} ({count})",
+  "@ordersFilterCount": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "orderHistoryTitle": "Order History",
   "ordersSearchHint": "Search Order",
   "pastOrdersTitle": "Past Orders",
   "reassignedTitle": "Re-Assigned",

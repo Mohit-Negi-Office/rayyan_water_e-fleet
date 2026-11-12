@@ -15,8 +15,9 @@ import 'package:rayyan_driver/features/orders/presentation/widgets/order_filter_
 import 'package:rayyan_driver/features/orders/presentation/widgets/order_search_box.dart';
 import 'package:rayyan_driver/features/orders/presentation/widgets/orders_slivers.dart';
 
-/// Home (Figma `5665:38771`): today's orders under the curved header, with
-/// Past Orders and Re-Assigned at the foot.
+/// Home (Figma `5665:38771`, `5912:36798`): today's orders under the curved
+/// header. The header, search and Today's Orders stay put; the list and
+/// Order History scroll, and pull-to-refresh starts under that section.
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -49,44 +50,47 @@ class HomeView extends StatelessWidget {
     );
     const gutter = EdgeInsets.symmetric(horizontal: AppSpacing.screenGutter);
     return TintedScaffold(
-      body: RefreshIndicator(
-        onRefresh: context.read<OrdersListCubit>().refresh,
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(child: HomeHeader(avatarUrl: avatar)),
-            const SliverPadding(
-              padding: gutter,
-              sliver: SliverToBoxAdapter(child: OrderSearchBox()),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          HomeHeader(avatarUrl: avatar),
+          const Padding(padding: gutter, child: OrderSearchBox()),
+          const SizedBox(height: _sectionGap),
+          Padding(
+            padding: gutter,
+            child: Text(
+              context.l10n.homeTodaysOrders,
+              style: context.textStyles.sectionTitle.copyWith(
+                color: context.colors.textPrimary,
+              ),
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: _sectionGap)),
-            SliverPadding(
-              padding: gutter,
-              sliver: SliverToBoxAdapter(
-                child: Text(
-                  context.l10n.homeTodaysOrders,
-                  style: context.textStyles.sectionTitle.copyWith(
-                    color: context.colors.textPrimary,
+          ),
+          const SizedBox(height: AppSpacing.s4),
+          const OrderFilterBar(showCounts: true),
+          const SizedBox(height: AppSpacing.s4),
+          Expanded(
+            child: RefreshIndicator(
+              onRefresh: context.read<OrdersListCubit>().refresh,
+              child: const CustomScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
+                slivers: [
+                  OrdersSliver(),
+                  SliverToBoxAdapter(child: SizedBox(height: _sectionGap)),
+                  SliverPadding(
+                    padding: gutter,
+                    sliver: SliverToBoxAdapter(child: HomeShortcuts()),
                   ),
-                ),
+                  SliverSafeArea(
+                    top: false,
+                    sliver: SliverToBoxAdapter(
+                      child: SizedBox(height: AppSpacing.s6),
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: AppSpacing.s4)),
-            const SliverToBoxAdapter(child: OrderFilterBar()),
-            const SliverToBoxAdapter(child: SizedBox(height: AppSpacing.s4)),
-            const OrdersSliver(),
-            const SliverToBoxAdapter(child: SizedBox(height: _sectionGap)),
-            const SliverPadding(
-              padding: gutter,
-              sliver: SliverToBoxAdapter(child: HomeShortcuts()),
-            ),
-            const SliverSafeArea(
-              top: false,
-              sliver: SliverToBoxAdapter(
-                child: SizedBox(height: AppSpacing.s6),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

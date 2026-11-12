@@ -169,6 +169,9 @@ abstract final class AppIcons {
   /// delivered, failed.
   static const String orderBox = 'assets/icons/figma/ic_box.svg';
   static const String reassigned = 'assets/icons/figma/ic_refresh_2.svg';
+
+  /// Order History row on Home (Figma `5924:40933`).
+  static const String orderHistory = 'assets/icons/figma/ic_refresh_2.svg';
   static const String delivered = 'assets/icons/figma/ic_tick_circle.svg';
   static const String deliveryFailed = 'assets/icons/figma/ic_info_circle.svg';
   static const String cancelled = 'assets/icons/figma/ic_close_circle.svg';

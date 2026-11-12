@@ -8,45 +8,9 @@ import 'package:rayyan_driver/core/theme/app_spacing.dart';
 import 'package:rayyan_driver/core/theme/theme_context_x.dart';
 import 'package:rayyan_driver/core/widgets/media/app_icon.dart';
 
-/// "Past Orders" and "Re-Assigned" tiles at the foot of Home (Figma
-/// `5665:38857`).
+/// "Order History" row at the foot of Home (Figma `5924:40931`).
 class HomeShortcuts extends StatelessWidget {
   const HomeShortcuts({super.key});
-
-  /// Figma gap between the tiles.
-  static const double _gap = 14;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return Row(
-      children: [
-        Expanded(
-          child: _Tile(
-            icon: AppIcons.orderBox,
-            label: l10n.pastOrdersTitle,
-            onTap: () => context.pushNamed(AppRoutes.pastOrders.name),
-          ),
-        ),
-        const SizedBox(width: _gap),
-        Expanded(
-          child: _Tile(
-            icon: AppIcons.reassigned,
-            label: l10n.reassignedTitle,
-            onTap: () => context.pushNamed(AppRoutes.reassignedOrders.name),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _Tile extends StatelessWidget {
-  const _Tile({required this.icon, required this.label, required this.onTap});
-
-  final String icon;
-  final String label;
-  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -57,22 +21,33 @@ class _Tile extends StatelessWidget {
       borderRadius: radius,
       child: InkWell(
         borderRadius: radius,
-        onTap: onTap,
+        onTap: () => context.pushNamed(AppRoutes.pastOrders.name),
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.tileInline,
             vertical: AppSpacing.s4,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
             children: [
-              AppIcon(icon, size: AppIconSizes.header, color: colors.brand),
-              const SizedBox(height: AppSpacing.s2),
-              Text(
-                label,
-                style: context.textStyles.pageTitle.copyWith(
-                  color: colors.textPrimary,
+              AppIcon(
+                AppIcons.orderHistory,
+                size: AppIconSizes.header,
+                color: colors.brand,
+              ),
+              const SizedBox(width: AppSpacing.s2),
+              Expanded(
+                child: Text(
+                  context.l10n.orderHistoryTitle,
+                  style: context.textStyles.pageTitle.copyWith(
+                    color: colors.textPrimary,
+                  ),
                 ),
+              ),
+              AppIcon(
+                AppIcons.chevronEnd,
+                size: AppIconSizes.inline,
+                color: colors.brand,
+                matchTextDirection: true,
               ),
             ],
           ),

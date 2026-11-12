@@ -21,13 +21,11 @@ DeliveryOrder _order(
 
 void main() {
   group('OrderFilter.forScope', () {
-    test("today's orders filter by delivery stage", () {
+    test("today's orders filter by new, delivered and cancelled", () {
       expect(OrderFilter.forScope(OrderListScope.today), [
-        OrderFilter.all,
         OrderFilter.newOrder,
-        OrderFilter.orderPicked,
-        OrderFilter.dropOff,
-        OrderFilter.failed,
+        OrderFilter.delivered,
+        OrderFilter.cancelled,
       ]);
     });
 
@@ -53,15 +51,24 @@ void main() {
         DeliveryStatus.reassigned,
         outcome: DeliveryStatus.delivered,
       ),
+      _order('71864586931', DeliveryStatus.dropOff),
     ];
 
     test('All keeps every order', () {
       expect(OrderFilter.all.apply(orders), orders);
     });
 
+    test('New Order keeps every order still out for delivery', () {
+      expect(OrderFilter.newOrder.apply(orders), [
+        orders[0],
+        orders[1],
+        orders[4],
+      ]);
+    });
+
     test('a stage keeps only orders in that stage', () {
-      expect(OrderFilter.newOrder.apply(orders), [orders[0]]);
       expect(OrderFilter.failed.apply(orders), [orders[2]]);
+      expect(OrderFilter.cancelled.apply(orders), isEmpty);
     });
 
     test('a re-assigned order is filtered by what happened to it', () {
