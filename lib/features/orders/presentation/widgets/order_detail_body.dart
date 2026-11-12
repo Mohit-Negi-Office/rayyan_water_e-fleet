@@ -13,7 +13,11 @@ import 'package:rayyan_driver/features/orders/presentation/widgets/order_action_
 import 'package:rayyan_driver/features/orders/presentation/widgets/order_items_ticket.dart';
 import 'package:rayyan_driver/features/orders/presentation/widgets/order_summary_card.dart';
 
-/// Every section of the order detail, top to bottom (Figma `5000:100076`).
+/// Every section of the order detail, top to bottom.
+///
+/// A re-assigned order shows "Reason for reassign" under the summary
+/// (Figma `5672:38961`); a failed one shows "Reason for fail delivery"
+/// (`5691:36741`). Closed orders drop directions, call and the actions.
 class OrderDetailBody extends StatelessWidget {
   const OrderDetailBody({required this.order, super.key});
 
@@ -27,7 +31,7 @@ class OrderDetailBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final actions = order.actions;
-    final reason = order.reason;
+    final reason = order.reason?.trim();
     final reasonTitle = switch (order.status) {
       DeliveryStatus.reassigned => l10n.orderReasonReassign,
       DeliveryStatus.failed => l10n.orderReasonFail,
@@ -45,7 +49,7 @@ class OrderDetailBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           OrderSummaryCard(order: order),
-          if (reasonTitle != null && reason != null) ...[
+          if (reasonTitle != null && reason != null && reason.isNotEmpty) ...[
             const SizedBox(height: _gap),
             DetailSection(
               title: reasonTitle,

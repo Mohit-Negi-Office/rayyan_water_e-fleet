@@ -2291,6 +2291,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ordersSearchHint => 'ابحث عن طلب';
 
   @override
+  String get ordersAllOrders => 'كل الطلبات';
+
+  @override
+  String get ordersFilterReassign => 'إعادة التعيين';
+
+  @override
+  String get ordersDateRange => 'نطاق التاريخ';
+
+  @override
+  String get ordersDateLast30Days => 'آخر 30 يومًا';
+
+  @override
+  String get ordersDateLast6Months => 'آخر 6 أشهر';
+
+  @override
+  String get ordersDateLastYear => 'السنة الماضية';
+
+  @override
   String get pastOrdersTitle => 'الطلبات السابقة';
 
   @override

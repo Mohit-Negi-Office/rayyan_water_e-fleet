@@ -43,4 +43,8 @@ class OrdersListCubit extends Cubit<OrdersListState> {
       emit(state.copyWith(filter: filter));
 
   void queryChanged(String query) => emit(state.copyWith(query: query));
+
+  /// [range] null clears the Order History date filter.
+  void dateRangeChanged(OrderDateRange? range) =>
+      emit(state.copyWith(dateRange: range));
 }

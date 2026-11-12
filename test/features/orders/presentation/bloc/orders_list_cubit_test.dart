@@ -35,11 +35,13 @@ void main() {
     OrderFilter? filter,
     String query = '',
     OrdersLoad load = const OrdersLoad.loading(),
+    OrderDateRange? dateRange,
   }) => OrdersListState(
     filters: todayFilters,
     filter: filter ?? todayFilters.first,
     query: query,
     load: load,
+    dateRange: dateRange,
   );
 
   test('starts on New Order, with the chips of its list', () {
@@ -93,6 +95,18 @@ void main() {
     expect: () => [
       todayState(filter: OrderFilter.delivered),
       todayState(filter: OrderFilter.delivered, query: '586'),
+    ],
+  );
+
+  blocTest<OrdersListCubit, OrdersListState>(
+    'applies a date range and clears it',
+    build: build,
+    act: (cubit) => cubit
+      ..dateRangeChanged(OrderDateRange.last30Days)
+      ..dateRangeChanged(null),
+    expect: () => [
+      todayState(dateRange: OrderDateRange.last30Days),
+      todayState(),
     ],
   );
 }

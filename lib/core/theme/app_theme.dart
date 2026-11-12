@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rayyan_driver/core/theme/app_color_scheme.dart';
+import 'package:rayyan_driver/core/theme/app_palette.dart';
 import 'package:rayyan_driver/core/theme/app_radius.dart';
 import 'package:rayyan_driver/core/theme/app_spacing.dart';
 import 'package:rayyan_driver/core/theme/app_typography.dart';
@@ -54,20 +55,30 @@ abstract final class AppTheme {
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(
-          foregroundColor: c.brand,
-          side: BorderSide(color: c.brand),
-          minimumSize: const Size(
-            AppSpacing.minTapTarget,
-            AppSpacing.minTapTarget,
-          ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.s3,
-            vertical: AppSpacing.s2,
-          ),
-          textStyle: styles.label,
-          shape: buttonShape,
-        ),
+        style:
+            OutlinedButton.styleFrom(
+              foregroundColor: c.brand,
+              disabledForegroundColor: c.outline,
+              minimumSize: const Size(
+                AppSpacing.minTapTarget,
+                AppSpacing.minTapTarget,
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.s3,
+                vertical: AppSpacing.s2,
+              ),
+              textStyle: styles.label,
+              shape: buttonShape,
+            ).copyWith(
+              side: WidgetStateProperty.resolveWith((states) {
+                final disabled = states.contains(WidgetState.disabled);
+                return BorderSide(
+                  color: disabled
+                      ? AppPalette.secondaryStrokeDisabled
+                      : c.brand,
+                );
+              }),
+            ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
@@ -105,7 +116,7 @@ abstract final class AppTheme {
       ),
       bottomSheetTheme: BottomSheetThemeData(
         backgroundColor: c.surface,
-        showDragHandle: true,
+        showDragHandle: false,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(AppRadius.xl5),

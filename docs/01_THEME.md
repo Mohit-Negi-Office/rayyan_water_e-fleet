@@ -60,6 +60,7 @@ Each file ≤ 250 lines. Only `lib/core/theme/` may contain raw hex values or fo
 | `white10` | `#FFFFFF` @ 10% | Expiry strip on the navy points card |
 | `green600` | `#009A43` | Status green ("Order Confirmed", "PAID") — `5482:141781` |
 | `blue200` | `#CFE1FF` | Soft rule in the order summary card |
+| `secondaryStrokeDisabled` | `#DFEFFF` | Disabled secondary button stroke — order filter sheet `5908:36895` |
 | `navy700A5` | `#04247C` @ 5% | Outline of option rows and schedule cards |
 | `teal600A8` | `#00AEA9` @ 8% | Fill of the "2 Deliveries a week" chips |
 

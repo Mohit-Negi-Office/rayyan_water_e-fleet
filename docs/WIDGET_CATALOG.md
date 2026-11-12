@@ -15,7 +15,7 @@ Status: _planned_ until implemented — then remove the italics and fill the pat
 | AppButton | `buttons/app_button.dart` | Button (449) | variants: primary, outline, text, danger; `size` regular / large (56pt CTA); `isLoading`, `leadingIcon`, `isExpanded` |
 | AppIconButton | `buttons/app_icon_button.dart` | Close (61), header bell box, Favourite | 48pt hit area, tooltip, `badgeCount`, `backgroundColor` for the boxed variant |
 | AppRadioTile | `selection/app_radio_tile.dart` | Radio (430) | Generic `<T>`: value, groupValue, label, `isCentered`, optional leading. Selected = tinted fill + brand border. Language, payment method, slot, frequency |
-| AppCheckOption | `selection/app_check_option.dart` | Check Box (33), Radio | Label with a checkbox or radio (`AppCheckControl`), control leading or trailing. Filters, "Set this address as default" |
+| AppCheckOption | `selection/app_check_option.dart` | Check Box (33), Radio | Label with a checkbox or radio (`AppCheckControl`), control leading or trailing, optional `labelStyle`. Filters, "Set this address as default" |
 | AppChip / AppChipTabs | `selection/app_chip.dart` | Tabs (All, Glass, Sparkling…), Location Type | Pill chip with optional icon; `AppChipTabs<T>` is a horizontal single-choice row. Products, favourites, address type, recent searches |
 | AppTextField | `inputs/app_text_field.dart` | Input Field (163) | label (`isRequired` adds "*"), hint, errorText, keyboard and action |
 | AppSearchInput | `inputs/app_search_input.dart` | Search bar (editable) | Search box with clear button; product and address search |

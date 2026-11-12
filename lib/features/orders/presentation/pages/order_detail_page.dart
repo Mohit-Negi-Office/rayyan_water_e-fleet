@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rayyan_driver/app/di/injection.dart';
+import 'package:rayyan_driver/core/l10n/l10n_x.dart';
 import 'package:rayyan_driver/core/widgets/layout/tinted_scaffold.dart';
 import 'package:rayyan_driver/core/widgets/navigation/app_top_bar.dart';
 import 'package:rayyan_driver/core/widgets/states/app_error_view.dart';
@@ -34,7 +35,7 @@ class OrderDetailView extends StatelessWidget {
     return BlocBuilder<OrderDetailCubit, OrderDetailState>(
       builder: (context, state) => TintedScaffold(
         wash: PageWash.detail,
-        appBar: const AppTopBar(title: ''),
+        appBar: AppTopBar(title: context.l10n.orderDetailTitle),
         bottomNavigationBar: switch (state) {
           OrderDetailLoaded() => CompletionBar(state: state),
           _ => null,

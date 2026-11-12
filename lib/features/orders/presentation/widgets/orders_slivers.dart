@@ -47,7 +47,12 @@ class OrdersSliver extends StatelessWidget {
         ),
         OrdersLoaded(:final orders) => _cards(
           context,
-          state.filter.apply(orders, query: state.query),
+          state.filter.apply(
+            orders,
+            query: state.query,
+            dateRange: state.dateRange,
+            now: DateTime.now(),
+          ),
           expanded:
               cubit.scope == OrderListScope.today &&
               state.filter == OrderFilter.newOrder,

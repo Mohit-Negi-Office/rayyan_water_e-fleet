@@ -2291,6 +2291,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ordersSearchHint => 'Search Order';
 
   @override
+  String get ordersAllOrders => 'All Orders';
+
+  @override
+  String get ordersFilterReassign => 'Re-Assign';
+
+  @override
+  String get ordersDateRange => 'Date Range';
+
+  @override
+  String get ordersDateLast30Days => 'Last 30 Days';
+
+  @override
+  String get ordersDateLast6Months => 'Last 6 Months';
+
+  @override
+  String get ordersDateLastYear => 'Last 1 Year';
+
+  @override
   String get pastOrdersTitle => 'Past Orders';
 
   @override

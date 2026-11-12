@@ -350,7 +350,7 @@ as Failure,
 /// @nodoc
 mixin _$OrdersListState {
 
- List<OrderFilter> get filters; OrderFilter get filter; String get query; OrdersLoad get load;
+ List<OrderFilter> get filters; OrderFilter get filter; String get query; OrdersLoad get load; OrderDateRange? get dateRange;
 /// Create a copy of OrdersListState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -361,16 +361,16 @@ $OrdersListStateCopyWith<OrdersListState> get copyWith => _$OrdersListStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersListState&&const DeepCollectionEquality().equals(other.filters, filters)&&(identical(other.filter, filter) || other.filter == filter)&&(identical(other.query, query) || other.query == query)&&(identical(other.load, load) || other.load == load));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersListState&&const DeepCollectionEquality().equals(other.filters, filters)&&(identical(other.filter, filter) || other.filter == filter)&&(identical(other.query, query) || other.query == query)&&(identical(other.load, load) || other.load == load)&&(identical(other.dateRange, dateRange) || other.dateRange == dateRange));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(filters),filter,query,load);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(filters),filter,query,load,dateRange);
 
 @override
 String toString() {
-  return 'OrdersListState(filters: $filters, filter: $filter, query: $query, load: $load)';
+  return 'OrdersListState(filters: $filters, filter: $filter, query: $query, load: $load, dateRange: $dateRange)';
 }
 
 
@@ -381,7 +381,7 @@ abstract mixin class $OrdersListStateCopyWith<$Res>  {
   factory $OrdersListStateCopyWith(OrdersListState value, $Res Function(OrdersListState) _then) = _$OrdersListStateCopyWithImpl;
 @useResult
 $Res call({
- List<OrderFilter> filters, OrderFilter filter, String query, OrdersLoad load
+ List<OrderFilter> filters, OrderFilter filter, String query, OrdersLoad load, OrderDateRange? dateRange
 });
 
 
@@ -398,13 +398,14 @@ class _$OrdersListStateCopyWithImpl<$Res>
 
 /// Create a copy of OrdersListState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? filters = null,Object? filter = null,Object? query = null,Object? load = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? filters = null,Object? filter = null,Object? query = null,Object? load = null,Object? dateRange = freezed,}) {
   return _then(_self.copyWith(
 filters: null == filters ? _self.filters : filters // ignore: cast_nullable_to_non_nullable
 as List<OrderFilter>,filter: null == filter ? _self.filter : filter // ignore: cast_nullable_to_non_nullable
 as OrderFilter,query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,load: null == load ? _self.load : load // ignore: cast_nullable_to_non_nullable
-as OrdersLoad,
+as OrdersLoad,dateRange: freezed == dateRange ? _self.dateRange : dateRange // ignore: cast_nullable_to_non_nullable
+as OrderDateRange?,
   ));
 }
 /// Create a copy of OrdersListState
@@ -498,10 +499,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<OrderFilter> filters,  OrderFilter filter,  String query,  OrdersLoad load)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<OrderFilter> filters,  OrderFilter filter,  String query,  OrdersLoad load,  OrderDateRange? dateRange)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OrdersListState() when $default != null:
-return $default(_that.filters,_that.filter,_that.query,_that.load);case _:
+return $default(_that.filters,_that.filter,_that.query,_that.load,_that.dateRange);case _:
   return orElse();
 
 }
@@ -519,10 +520,10 @@ return $default(_that.filters,_that.filter,_that.query,_that.load);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<OrderFilter> filters,  OrderFilter filter,  String query,  OrdersLoad load)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<OrderFilter> filters,  OrderFilter filter,  String query,  OrdersLoad load,  OrderDateRange? dateRange)  $default,) {final _that = this;
 switch (_that) {
 case _OrdersListState():
-return $default(_that.filters,_that.filter,_that.query,_that.load);case _:
+return $default(_that.filters,_that.filter,_that.query,_that.load,_that.dateRange);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -539,10 +540,10 @@ return $default(_that.filters,_that.filter,_that.query,_that.load);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<OrderFilter> filters,  OrderFilter filter,  String query,  OrdersLoad load)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<OrderFilter> filters,  OrderFilter filter,  String query,  OrdersLoad load,  OrderDateRange? dateRange)?  $default,) {final _that = this;
 switch (_that) {
 case _OrdersListState() when $default != null:
-return $default(_that.filters,_that.filter,_that.query,_that.load);case _:
+return $default(_that.filters,_that.filter,_that.query,_that.load,_that.dateRange);case _:
   return null;
 
 }
@@ -554,7 +555,7 @@ return $default(_that.filters,_that.filter,_that.query,_that.load);case _:
 
 
 class _OrdersListState implements OrdersListState {
-  const _OrdersListState({required final  List<OrderFilter> filters, this.filter = OrderFilter.all, this.query = '', this.load = const OrdersLoad.loading()}): _filters = filters;
+  const _OrdersListState({required final  List<OrderFilter> filters, this.filter = OrderFilter.all, this.query = '', this.load = const OrdersLoad.loading(), this.dateRange}): _filters = filters;
   
 
  final  List<OrderFilter> _filters;
@@ -567,6 +568,7 @@ class _OrdersListState implements OrdersListState {
 @override@JsonKey() final  OrderFilter filter;
 @override@JsonKey() final  String query;
 @override@JsonKey() final  OrdersLoad load;
+@override final  OrderDateRange? dateRange;
 
 /// Create a copy of OrdersListState
 /// with the given fields replaced by the non-null parameter values.
@@ -578,16 +580,16 @@ _$OrdersListStateCopyWith<_OrdersListState> get copyWith => __$OrdersListStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrdersListState&&const DeepCollectionEquality().equals(other._filters, _filters)&&(identical(other.filter, filter) || other.filter == filter)&&(identical(other.query, query) || other.query == query)&&(identical(other.load, load) || other.load == load));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrdersListState&&const DeepCollectionEquality().equals(other._filters, _filters)&&(identical(other.filter, filter) || other.filter == filter)&&(identical(other.query, query) || other.query == query)&&(identical(other.load, load) || other.load == load)&&(identical(other.dateRange, dateRange) || other.dateRange == dateRange));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_filters),filter,query,load);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_filters),filter,query,load,dateRange);
 
 @override
 String toString() {
-  return 'OrdersListState(filters: $filters, filter: $filter, query: $query, load: $load)';
+  return 'OrdersListState(filters: $filters, filter: $filter, query: $query, load: $load, dateRange: $dateRange)';
 }
 
 
@@ -598,7 +600,7 @@ abstract mixin class _$OrdersListStateCopyWith<$Res> implements $OrdersListState
   factory _$OrdersListStateCopyWith(_OrdersListState value, $Res Function(_OrdersListState) _then) = __$OrdersListStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<OrderFilter> filters, OrderFilter filter, String query, OrdersLoad load
+ List<OrderFilter> filters, OrderFilter filter, String query, OrdersLoad load, OrderDateRange? dateRange
 });
 
 
@@ -615,13 +617,14 @@ class __$OrdersListStateCopyWithImpl<$Res>
 
 /// Create a copy of OrdersListState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? filters = null,Object? filter = null,Object? query = null,Object? load = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? filters = null,Object? filter = null,Object? query = null,Object? load = null,Object? dateRange = freezed,}) {
   return _then(_OrdersListState(
 filters: null == filters ? _self._filters : filters // ignore: cast_nullable_to_non_nullable
 as List<OrderFilter>,filter: null == filter ? _self.filter : filter // ignore: cast_nullable_to_non_nullable
 as OrderFilter,query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,load: null == load ? _self.load : load // ignore: cast_nullable_to_non_nullable
-as OrdersLoad,
+as OrdersLoad,dateRange: freezed == dateRange ? _self.dateRange : dateRange // ignore: cast_nullable_to_non_nullable
+as OrderDateRange?,
   ));
 }
 

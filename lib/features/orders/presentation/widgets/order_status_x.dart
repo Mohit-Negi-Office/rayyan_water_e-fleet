@@ -20,7 +20,8 @@ extension DeliveryStatusUi on DeliveryStatus {
 
   Color color(AppColorScheme colors) => switch (this) {
     DeliveryStatus.delivered => colors.positive,
-    DeliveryStatus.failed || DeliveryStatus.cancelled => colors.error,
+    DeliveryStatus.failed => colors.error,
+    DeliveryStatus.cancelled => colors.iconSecondary,
     _ => colors.brand,
   };
 
@@ -56,5 +57,6 @@ extension OrderFilterUi on OrderFilter {
     OrderFilter.delivered => l10n.orderStatusDelivered,
     OrderFilter.cancelled => l10n.orderStatusCancelled,
     OrderFilter.failed => l10n.ordersFilterFailed,
+    OrderFilter.reassigned => l10n.ordersFilterReassign,
   };
 }

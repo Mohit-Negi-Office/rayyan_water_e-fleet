@@ -72,6 +72,11 @@ abstract final class AppIcons {
   // Arrows. Directional ones need `matchTextDirection` where RTL matters.
   static const String chevronDown = 'assets/icons/figma/ic_arrow_down.svg';
   static const String arrowDown = 'assets/icons/figma/ic_arrow_down.svg';
+
+  /// Date-range chevron (Figma `5908:36867`). The glyph points down; the
+  /// expanded row flips it.
+  static const String dateRangeChevron =
+      'assets/icons/figma/ic_chevron_down.svg';
   static const String chevronUp = 'assets/icons/figma/ic_arrow_up.svg';
   static const String backToTop = 'assets/icons/figma/ic_arrow_up.svg';
   static const String arrowUp = 'assets/icons/figma/ic_arrow_up.svg';

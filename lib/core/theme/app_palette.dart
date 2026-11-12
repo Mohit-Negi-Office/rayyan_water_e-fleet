@@ -123,4 +123,8 @@ abstract final class AppPalette {
   /// Shadows of the order detail's bottom bar.
   static const Color navy500A4 = Color(0x0A002F86);
   static const Color black8 = Color(0x14000000);
+
+  /// Disabled secondary button stroke. Figma
+  /// `cta_secondary/stroke/disabled` on the order filter sheet `5908:36895`.
+  static const Color secondaryStrokeDisabled = Color(0xFFDFEFFF);
 }

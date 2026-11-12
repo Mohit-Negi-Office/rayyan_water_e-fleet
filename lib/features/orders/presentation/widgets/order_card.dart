@@ -146,7 +146,8 @@ class _StatusBlock extends StatelessWidget {
       OrderListScope.today when expanded && start != null && end != null =>
         AppDateFormatter.timeRange(start, end, locale, isCompact: true),
       OrderListScope.today || OrderListScope.past when closed != null =>
-        order.status == DeliveryStatus.delivered
+        order.status == DeliveryStatus.delivered ||
+                order.status == DeliveryStatus.reassigned
             ? '${AppDateFormatter.fullDate(closed, locale)} | '
                   '${AppDateFormatter.time(closed, locale)}'
             : AppDateFormatter.fullDate(closed, locale),

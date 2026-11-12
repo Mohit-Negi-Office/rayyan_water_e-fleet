@@ -3956,6 +3956,42 @@ abstract class AppLocalizations {
   /// **'Search Order'**
   String get ordersSearchHint;
 
+  /// No description provided for @ordersAllOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'All Orders'**
+  String get ordersAllOrders;
+
+  /// No description provided for @ordersFilterReassign.
+  ///
+  /// In en, this message translates to:
+  /// **'Re-Assign'**
+  String get ordersFilterReassign;
+
+  /// No description provided for @ordersDateRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Date Range'**
+  String get ordersDateRange;
+
+  /// No description provided for @ordersDateLast30Days.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 30 Days'**
+  String get ordersDateLast30Days;
+
+  /// No description provided for @ordersDateLast6Months.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 6 Months'**
+  String get ordersDateLast6Months;
+
+  /// No description provided for @ordersDateLastYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 1 Year'**
+  String get ordersDateLastYear;
+
   /// No description provided for @pastOrdersTitle.
   ///
   /// In en, this message translates to:

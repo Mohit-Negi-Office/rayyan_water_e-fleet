@@ -20,8 +20,9 @@ extension FailReasonUi on FailReason {
   };
 }
 
-/// The reasons as radio cards; "Others" opens a box for the reason
-/// (Figma `5691:36926`).
+/// The reasons as radio cards. The chosen label is Regular black
+/// (Figma `5672:39375`); the rest stay Light gray. "Others" opens a box
+/// for the reason (Figma `5691:36926`).
 class FailReasonList extends StatelessWidget {
   const FailReasonList({
     required this.selected,
@@ -77,6 +78,11 @@ class _ReasonCard extends StatelessWidget {
     final colors = context.colors;
     final radius = BorderRadius.circular(AppRadius.card);
     final showNote = isSelected && reason == FailReason.other;
+    final labelStyle = isSelected
+        ? context.textStyles.cardTitle.copyWith(color: colors.textPrimary)
+        : context.textStyles.bodyLightAuto.copyWith(
+            color: colors.textSecondary,
+          );
     return Material(
       color: colors.surface,
       shape: RoundedRectangleBorder(
@@ -109,9 +115,7 @@ class _ReasonCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         reason.label(context.l10n),
-                        style: context.textStyles.bodyLightAuto.copyWith(
-                          color: colors.textSecondary,
-                        ),
+                        style: labelStyle,
                       ),
                     ),
                   ],

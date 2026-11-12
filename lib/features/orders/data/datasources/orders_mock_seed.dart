@@ -113,6 +113,13 @@ List<MockOrder> seedMockOrders(DateTime now) {
       DeliveryStatus.cancelled,
       closedAt: DateTime(now.year, now.month, now.day, 11, 5),
     ),
+    order(
+      '71864586938',
+      p,
+      DeliveryStatus.reassigned,
+      closedAt: pastDay,
+      reason: reason,
+    ),
     for (final (i, outcome) in const [
       DeliveryStatus.delivered,
       DeliveryStatus.cancelled,

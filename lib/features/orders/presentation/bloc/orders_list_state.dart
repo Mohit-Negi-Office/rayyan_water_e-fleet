@@ -22,5 +22,6 @@ abstract class OrdersListState with _$OrdersListState {
     @Default(OrderFilter.all) OrderFilter filter,
     @Default('') String query,
     @Default(OrdersLoad.loading()) OrdersLoad load,
+    OrderDateRange? dateRange,
   }) = _OrdersListState;
 }

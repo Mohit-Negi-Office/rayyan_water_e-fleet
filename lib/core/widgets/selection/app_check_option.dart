@@ -15,6 +15,7 @@ class AppCheckOption extends StatelessWidget {
     required this.onTap,
     this.control = AppCheckControl.checkbox,
     this.isControlLeading = false,
+    this.labelStyle,
     super.key,
   });
 
@@ -26,19 +27,19 @@ class AppCheckOption extends StatelessWidget {
   final AppCheckControl control;
   final bool isControlLeading;
 
+  /// Replaces the default label style. Color is kept as given.
+  final TextStyle? labelStyle;
+
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
     final styles = context.textStyles;
-    final text = Text(
-      label,
-      style:
-          (isSelected ||
-                      (isControlLeading && control == AppCheckControl.checkbox)
-                  ? styles.cardTitle
-                  : styles.label)
-              .copyWith(color: colors.textPrimary),
-    );
+    final fallback =
+        (isSelected || (isControlLeading && control == AppCheckControl.checkbox)
+                ? styles.cardTitle
+                : styles.label)
+            .copyWith(color: colors.textPrimary);
+    final text = Text(label, style: labelStyle ?? fallback);
     final indicator = AppCheckIndicator(
       isSelected: isSelected,
       control: control,

@@ -47,7 +47,12 @@ void main() {
         today.map((order) => order.number),
         isNot(contains('71864586933')),
       );
-      expect(await orders(OrderListScope.past), hasLength(5));
+      final past = await orders(OrderListScope.past);
+      expect(past, hasLength(6));
+      expect(
+        past.map((order) => order.status),
+        contains(DeliveryStatus.reassigned),
+      );
       expect(await orders(OrderListScope.reassigned), hasLength(4));
     });
 
@@ -62,9 +67,18 @@ void main() {
         final today = await orders(OrderListScope.today);
         expect(today, hasLength(8));
         expect(today.map((order) => order.number), contains('71864586930'));
-        expect(await orders(OrderListScope.past), hasLength(6));
+        expect(await orders(OrderListScope.past), hasLength(7));
       },
     );
+
+    test('a re-assigned order detail includes the reason', () async {
+      for (final id in ['71864586938', '71864586940']) {
+        final result = await repository.getOrder(id);
+        final order = (result as Success).value;
+        expect(order.status, DeliveryStatus.reassigned, reason: id);
+        expect(order.reason, 'Not well today', reason: id);
+      }
+    });
 
     test('a re-assigned order keeps the reason and leaves today', () async {
       final result = await repository.reassign('71864586927', 'Not well');
