@@ -2274,12 +2274,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get splashTagline => 'بطل وراء كل قطرة';
 
   @override
-  String get authNeedHelp => 'تحتاج مساعدة؟';
-
-  @override
-  String get authContactUs => 'تواصل معنا';
-
-  @override
   String get homeCurrentTime => 'الوقت الحالي';
 
   @override

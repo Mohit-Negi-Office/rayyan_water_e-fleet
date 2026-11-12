@@ -3926,18 +3926,6 @@ abstract class AppLocalizations {
   /// **'A hero behind every drop'**
   String get splashTagline;
 
-  /// No description provided for @authNeedHelp.
-  ///
-  /// In en, this message translates to:
-  /// **'Need Help?'**
-  String get authNeedHelp;
-
-  /// No description provided for @authContactUs.
-  ///
-  /// In en, this message translates to:
-  /// **'Contact Us'**
-  String get authContactUs;
-
   /// No description provided for @homeCurrentTime.
   ///
   /// In en, this message translates to:

@@ -81,6 +81,7 @@ Bottom nav: **Home · Products · [Cart FAB] · Favourite · Profile**.
 
 ### auth
 - Enter Mobile Number (+974 default; +971 seen as alternative), "Login with a valid local Mobile Number", "Or Login With".
+- Footer (`5000:98322`): "Terms & Conditions" and "Privacy & Policies", opening the same policy pages as Profile. Reachable before sign-in.
 - Verify Mobile Number: 4-digit OTP, 00:59 countdown, Resend, "Incorrect OTP".
 - "Incorrect Number" inline error.
 - Fill Your Details (name, email).

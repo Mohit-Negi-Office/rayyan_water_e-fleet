@@ -15,6 +15,11 @@ void main() {
       );
     });
 
+    test('policy pages stay open so login can open them', () {
+      expect(resolve('/support/policies/terms', signedIn: false), isNull);
+      expect(resolve('/support/policies/privacy', signedIn: false), isNull);
+    });
+
     test('every other screen goes to login', () {
       for (final path in [
         '/home',
@@ -23,6 +28,8 @@ void main() {
         '/orders/123/fail',
         '/profile',
         '/support/faqs',
+        '/support/policies',
+        '/support/policies/terms/extra',
       ]) {
         expect(resolve(path, signedIn: false), '/login', reason: path);
       }
@@ -38,6 +45,7 @@ void main() {
     test('app screens stay put', () {
       expect(resolve('/home', signedIn: true), isNull);
       expect(resolve('/orders/123', signedIn: true), isNull);
+      expect(resolve('/support/policies/terms', signedIn: true), isNull);
       expect(resolve('/', signedIn: true), isNull);
     });
 

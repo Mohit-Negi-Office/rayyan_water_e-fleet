@@ -104,3 +104,4 @@ Icons: `AppIcons` in `core/assets/app_icons.dart` holds Figma-exported SVG paths
 | addresses | MosqueMapLayer / MosqueCards | `addresses/presentation/widgets/mosque_*.dart` | Mosque markers over the map; swipeable mosque cards (`4906:80755`) |
 | addresses | AddressPhotoSlots / AddressFormFields / AddressPlaceCard | `addresses/presentation/widgets/` | Complete / Edit Your Address form parts |
 | favourites | FavouritesHeader / FavouritesGrid | `favourites/presentation/widgets/` | Navy header; category tabs over the favourites grid |
+| auth | LoginLegalLinks | `auth/presentation/widgets/login_legal_links.dart` | Login footer (`5000:98322`): Terms & Conditions and Privacy & Policies |

@@ -1458,8 +1458,6 @@
     }
   },
   "splashTagline": "A hero behind every drop",
-  "authNeedHelp": "Need Help?",
-  "authContactUs": "Contact Us",
   "homeCurrentTime": "Current Time",
   "homeTodaysOrders": "Todays Orders",
   "ordersFilterCount": "{label} ({count})",

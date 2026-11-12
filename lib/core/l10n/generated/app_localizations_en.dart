@@ -2274,12 +2274,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get splashTagline => 'A hero behind every drop';
 
   @override
-  String get authNeedHelp => 'Need Help?';
-
-  @override
-  String get authContactUs => 'Contact Us';
-
-  @override
   String get homeCurrentTime => 'Current Time';
 
   @override

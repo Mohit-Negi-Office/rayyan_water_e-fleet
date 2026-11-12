@@ -814,8 +814,6 @@
     }
   },
   "splashTagline": "بطل وراء كل قطرة",
-  "authNeedHelp": "تحتاج مساعدة؟",
-  "authContactUs": "تواصل معنا",
   "homeCurrentTime": "الوقت الحالي",
   "homeTodaysOrders": "طلبات اليوم",
   "ordersFilterCount": "{label} ({count})",

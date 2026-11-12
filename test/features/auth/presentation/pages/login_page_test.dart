@@ -31,7 +31,10 @@ void main() {
     ).thenAnswer((_) async => const Success<void>(null));
   });
 
-  Future<void> pump(WidgetTester tester, {Locale locale = const Locale('en')}) {
+  Future<GoRouter> pump(
+    WidgetTester tester, {
+    Locale locale = const Locale('en'),
+  }) {
     final cubit = LoginCubit(requestOtp);
     addTearDown(cubit.close);
     return tester.pumpRouted(
@@ -46,6 +49,12 @@ void main() {
             return Text('otp ${query['phone']}');
           },
         ),
+        GoRoute(
+          name: AppRoutes.policy.name,
+          path: AppRoutes.policy.path,
+          builder: (_, state) =>
+              Text('policy ${state.pathParameters[AppRoutes.typeParam]}'),
+        ),
       ],
     );
   }
@@ -56,8 +65,10 @@ void main() {
     expect(find.text('Login with a valid local Mobile Number'), findsOneWidget);
     expect(find.text('+974'), findsOneWidget);
     expect(find.text('Mobile Number'), findsOneWidget);
-    expect(find.text('Need Help?'), findsOneWidget);
-    expect(find.text('Contact Us'), findsOneWidget);
+    expect(find.text('Terms & Conditions'), findsOneWidget);
+    expect(find.text('Privacy & Policies'), findsOneWidget);
+    expect(find.text('Need Help?'), findsNothing);
+    expect(find.text('Contact Us'), findsNothing);
     expect(find.text('Or Login With'), findsNothing);
     expect(_continue(tester).onPressed, isNull);
   });
@@ -102,9 +113,25 @@ void main() {
     expect(find.byType(SnackBar), findsNothing);
   });
 
+  testWidgets('legal links open the matching policy', (tester) async {
+    final router = await pump(tester);
+
+    await tester.tap(find.text('Terms & Conditions'));
+    await tester.pumpAndSettle();
+    expect(find.text('policy terms'), findsOneWidget);
+
+    router.pop();
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Privacy & Policies'));
+    await tester.pumpAndSettle();
+    expect(find.text('policy privacy'), findsOneWidget);
+  });
+
   testWidgets('Arabic keeps the number left-to-right', (tester) async {
     await pump(tester, locale: const Locale('ar'));
     expect(find.text('أدخل رقم الجوال'), findsOneWidget);
+    expect(find.text('الشروط والأحكام'), findsOneWidget);
+    expect(find.text('الخصوصية والسياسات'), findsOneWidget);
     final direction = tester.widget<Directionality>(
       find
           .ancestor(

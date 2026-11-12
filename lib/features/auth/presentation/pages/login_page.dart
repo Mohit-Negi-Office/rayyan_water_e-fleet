@@ -9,10 +9,10 @@ import 'package:rayyan_driver/core/widgets/layout/wave_header_scaffold.dart';
 import 'package:rayyan_driver/features/auth/presentation/bloc/login_cubit.dart';
 import 'package:rayyan_driver/features/auth/presentation/bloc/login_state.dart';
 import 'package:rayyan_driver/features/auth/presentation/widgets/login_form.dart';
-import 'package:rayyan_driver/features/auth/presentation/widgets/need_help_row.dart';
+import 'package:rayyan_driver/features/auth/presentation/widgets/login_legal_links.dart';
 
 /// "Enter Mobile Number" (Figma `5000:98300`): the logo in place of a back
-/// button, and "Need Help? Contact Us" at the foot.
+/// button, and Terms & Privacy at the foot.
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
@@ -53,7 +53,7 @@ class LoginView extends StatelessWidget {
           semanticLabel: l10n.appName,
         ),
         leadingTop: WaveHeaderScaffold.logoTop,
-        footer: const NeedHelpRow(),
+        footer: const LoginLegalLinks(),
         body: const LoginForm(),
       ),
     );
