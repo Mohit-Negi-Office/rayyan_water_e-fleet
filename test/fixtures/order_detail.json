@@ -1,0 +1,37 @@
+{
+  "id": "71864586927",
+  "number": "71864586927",
+  "status": "drop_off",
+  "payment_status": "pending",
+  "slot_start": "2026-06-24T08:00:00.000",
+  "slot_end": "2026-06-24T12:00:00.000",
+  "assigned_at": "2026-06-24T05:00:00.000",
+  "items": [
+    {
+      "name": "Glass Still Water",
+      "volume_ml": 750,
+      "bottles": 12,
+      "quantity": 1,
+      "image_url": "https://cdn.example.com/glass.png"
+    },
+    {
+      "name": "Glass Still Water",
+      "volume_ml": 750,
+      "bottles": 4,
+      "quantity": 2,
+      "image_url": null
+    }
+  ],
+  "location": {
+    "recipient": "Ahmed Al-Thani",
+    "address": "24, Al-Zaeden P.O. Box 1234, Al Khor QATAR",
+    "latitude": 25.6839,
+    "longitude": 51.5058,
+    "photo_urls": ["https://cdn.example.com/a.jpg"]
+  },
+  "customer_name": "Firoz Ahmed",
+  "customer_phone": "+97455876543",
+  "total_amount": 17000,
+  "special_instruction": "Please Provide chilled water, Thank You",
+  "reason": null
+}

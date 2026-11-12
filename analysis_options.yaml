@@ -1,0 +1,33 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.config.dart"
+    - "lib/core/l10n/generated/**"
+    - build/**
+    - android/**
+    - ios/**
+  errors:
+    always_use_package_imports: error
+    avoid_relative_lib_imports: error
+    invalid_annotation_target: ignore
+
+linter:
+  rules:
+    always_use_package_imports: true
+    avoid_relative_lib_imports: true
+    prefer_const_constructors: true
+    prefer_const_constructors_in_immutables: true
+    prefer_final_locals: true
+    prefer_final_fields: true
+    use_super_parameters: true
+    sort_child_properties_last: true
+    use_build_context_synchronously: true
+    avoid_print: true
+    require_trailing_commas: true
+    exhaustive_cases: true
+    unawaited_futures: true
+    cancel_subscriptions: true
+    close_sinks: true

@@ -1,0 +1,1545 @@
+{
+  "@@locale": "en",
+  "appName": "Rayyan E-Fleet",
+  "commonRetry": "Retry",
+  "commonContinue": "Continue",
+  "commonBack": "Back",
+  "commonGoHome": "Go To Home",
+  "onboardingWelcomeTo": "Welcome to",
+  "onboardingWelcomeTitle": "Rayyan Water World",
+  "onboardingTagline": "~ Your Daily Drop of Nature ~",
+  "onboardingChooseLanguage": "Choose language",
+  "languageEnglish": "English",
+  "languageArabic": "Arabic",
+  "navHome": "Home",
+  "navProducts": "Products",
+  "navCart": "Cart",
+  "navFavourite": "Favourite",
+  "navProfile": "Profile",
+  "cartTitle": "My Cart",
+  "cartTitleCount": "My Cart ({count})",
+  "@cartTitleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cartEmptyTitle": "Your cart is currently empty",
+  "cartEmptyMessage": "Looks like you haven’t added any product to your cart yet.",
+  "cartViewProducts": "View Products",
+  "cartAddItem": "Add Item",
+  "cartCouponCode": "Coupon Code",
+  "cartApplyCoupon": "Apply Coupon",
+  "cartViewAllCoupons": "View All Coupons",
+  "cartRemoveCoupon": "Remove coupon",
+  "cartOrderSummary": "Order Summary",
+  "cartItemTotal": "Item Total",
+  "cartDiscount": "Discount",
+  "cartDiscountValue": "- {amount}",
+  "@cartDiscountValue": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "cartDeliveryFee": "Delivery fee",
+  "cartVat": "VAT",
+  "cartTotal": "Total (Tax Included)",
+  "cartCheckout": "Checkout",
+  "cartLoginToContinue": "Login to Continue",
+  "cartMinimumTitle": "Shop {amount} More to unlock",
+  "@cartMinimumTitle": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "cartMinimumMessage": "Add more to reach minimum order",
+  "cartPriceChanged": "Product price changed to {price}",
+  "@cartPriceChanged": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "cartUnavailable": "This product is no longer available",
+  "cartRemove": "Remove",
+  "cartPriceChangedQuestion": "Do you still want to continue?",
+  "cartRemoveItem": "Remove Item",
+  "couponsTitle": "Coupon Code",
+  "couponsInputHint": "Enter Coupon Code",
+  "couponsApplyList": "Apply Coupons",
+  "couponsNotApplicable": "This Coupon is not applicable",
+  "couponsTerms": "T&C",
+  "couponsRemove": "Remove",
+  "couponsClearCode": "Clear code",
+  "couponsEmptyTitle": "No coupons available",
+  "couponsEmptyGuest": "Log in to see if there are any exclusive offers available for you.",
+  "couponsEmptyMessage": "There are no coupons available right now. Check back later for new offers.",
+  "notFoundTitle": "Page not found",
+  "notFoundMessage": "The page you are looking for doesn't exist.",
+  "errorGenericTitle": "Something went wrong",
+  "errorNetworkTitle": "No internet connection",
+  "errorNetworkMessage": "Check your connection and try again.",
+  "errorServerMessage": "We couldn't complete your request. Please try again.",
+  "errorUnauthorizedMessage": "Your session has expired. Please log in again.",
+  "errorValidationMessage": "Please check the highlighted fields.",
+  "errorUnexpectedMessage": "An unexpected error occurred. Please try again.",
+  "homeSelectLocation": "Select Location",
+  "homeChangeLocation": "Change delivery location",
+  "homeNotifications": "Notifications",
+  "homeSearchHint": "Search",
+  "homeSearchHighlight": "\"Sparkling Water\"",
+  "homeFreeDelivery": "Free delivery on every order",
+  "homeMinimumOrder": "Minimum Order {amount}",
+  "@homeMinimumOrder": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "homeCategoriesEyebrow": "Pure by Nature",
+  "homeCategoriesTitle": "Refreshment In Every Drop",
+  "homeOurBestseller": "Our Bestseller",
+  "homeEasyReorder": "Easy Reorder",
+  "homeMosqueTitle": "Nearby mosque delivery",
+  "homeMosqueSubtitle": "We deliver water free to nearby mosques",
+  "homeUpcomingDelivery": "Upcoming Repeat Delivery",
+  "homeOrderNumber": "Order No.: {number}",
+  "@homeOrderNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "homeReorder": "Reorder",
+  "homeWhatsNew": "What's New",
+  "homeBestSellers": "Best Sellers",
+  "homeFooterTagline": "Pure by Nature,\nPerfect by Source.",
+  "homeFooterOrigin": "From The Heart Of Qatar",
+  "homeEmptyTitle": "Nothing to show yet",
+  "homeEmptyMessage": "Pull down to refresh.",
+  "homeBannerLabel": "Offer {index} of {count}",
+  "@homeBannerLabel": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "productBottles": "{count, plural, =1{1 Bottle} other{{count} Bottles}}",
+  "@productBottles": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "productUnitMl": "ML",
+  "productAddToCart": "Add to cart",
+  "productAddToFavourites": "Add to favourites",
+  "commonClose": "Close",
+  "commonClear": "Clear",
+  "commonClearAll": "Clear All",
+  "commonViewAll": "View All",
+  "commonSearch": "Search",
+  "commonClearSearch": "Clear search",
+  "commonLogin": "Login",
+  "commonSave": "Save",
+  "commonUpdate": "Update",
+  "commonDelete": "Delete",
+  "commonEdit": "Edit",
+  "commonReset": "Reset",
+  "commonApply": "Apply",
+  "commonBackToTop": "Back To Top",
+  "commonMore": "more",
+  "commonLess": "less",
+  "productCups": "{count, plural, =1{1 Cup} other{{count} Cups}}",
+  "@productCups": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "productSizeLine": "{volume} ML x {pack}",
+  "@productSizeLine": {
+    "placeholders": {
+      "volume": {
+        "type": "int"
+      },
+      "pack": {
+        "type": "String"
+      }
+    }
+  },
+  "productVariantLabel": "{volume} ML x {count}",
+  "@productVariantLabel": {
+    "placeholders": {
+      "volume": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "productIncrease": "Increase quantity",
+  "productDecrease": "Decrease quantity",
+  "productRemoveFromFavourites": "Remove from favourites",
+  "productOutOfStock": "Out Of Stock",
+  "productNotifyMe": "Notify Me",
+  "productNotifyRequested": "We'll Notify You",
+  "productAddToCartCta": "ADD TO CART",
+  "favouritesRemoveTitle": "Remove {name} from Favourites?",
+  "@favouritesRemoveTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "favouritesRemoveMessage": "Are you sure you want to remove item from your favourite list ?",
+  "favouritesRemoveAction": "Remove",
+  "notificationsTitle": "Notifications",
+  "notificationsToday": "Today",
+  "notificationsYesterday": "Yesterday",
+  "notificationsUnread": "Unread",
+  "notificationsEmptyTitle": "No notifications yet!",
+  "notificationsEmptyMessage": "Watch this space for some coming your way very very soon..",
+  "timeJustNow": "now",
+  "timeMinutesShort": "{count}m",
+  "@timeMinutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeHoursShort": "{count}h",
+  "@timeHoursShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeDaysShort": "{count}d",
+  "@timeDaysShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "authLoginTitle": "Enter Mobile Number",
+  "authLoginSubtitle": "Login with a valid local Mobile Number",
+  "authMobileHint": "Mobile Number",
+  "authIncorrectNumber": "Incorrect Number",
+  "authOrLoginWith": "Or Login With",
+  "authGoogle": "Google",
+  "authApple": "Apple",
+  "authOtpTitle": "Verify Mobile Number",
+  "authOtpSubtitle": "Please enter the {length} digit OTP sent to",
+  "@authOtpSubtitle": {
+    "placeholders": {
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "authOtpEdit": "EDIT",
+  "authOtpFieldLabel": "{length} digit OTP",
+  "@authOtpFieldLabel": {
+    "placeholders": {
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "authOtpNotReceived": "Didn’t receive the OTP?",
+  "authOtpResend": "Resend",
+  "authOtpVerify": "Verify",
+  "authOtpIncorrect": "Incorrect OTP",
+  "authDetailsTitle": "Fill Your Details",
+  "authDetailsSubtitle": "Please enter your details",
+  "authNameLabel": "Name",
+  "authNameHint": "Enter Your Name",
+  "authNameMissing": "Enter your name",
+  "authMobileLabel": "Mobile Number",
+  "authMobileVerified": "Verified number",
+  "profileVerified": "Verified",
+  "authEmailLabel": "Email",
+  "authEmailHint": "Enter Your Email",
+  "authEmailMissing": "Enter your email",
+  "authEmailIncorrect": "Incorrect email",
+  "productsTitle": "Explore Products",
+  "productsAll": "All",
+  "productsAllProducts": "All Products",
+  "productsChangeMosque": "Change mosque",
+  "productsFoundCount": "{count, plural, =1{1 Product found} other{{count} Products found}}",
+  "@productsFoundCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchResultsCount": "{count, plural, =1{1 Result Found} other{{count} Results Found}}",
+  "@searchResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "subscribeSaveTag": "Subscribe & Save",
+  "subscribeSaveGet": "Get ",
+  "subscribeSaveOff": "{percent}% OFF",
+  "@subscribeSaveOff": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "subscribeSaveOn": " On\n",
+  "subscribeSaveRecurring": "Recurring Water",
+  "subscribeSaveBottles": "\nBottle Deliveries",
+  "subscribeSaveFrequencies": "Daily • Weekly • Monthly",
+  "subscribeSaveAction": "Subscribe Now",
+  "productsFilter": "Filter",
+  "productsFilterActive": "Filter, applied",
+  "productsEmptyTitle": "No products found",
+  "productsEmptyMessage": "Try another category or clear the filters.",
+  "productsClearFilters": "Clear filters",
+  "filterTitle": "Filter",
+  "filterSizes": "Sizes",
+  "filterCategory": "Category",
+  "filterBrand": "Brand",
+  "filterSizeOption": "{ml} ML",
+  "@filterSizeOption": {
+    "placeholders": {
+      "ml": {
+        "type": "int"
+      }
+    }
+  },
+  "searchRecent": "Recent Search",
+  "searchNotFoundTitle": "Oops! We couldn't find product matching “{query}”",
+  "@searchNotFoundTitle": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "searchNotFoundMessage": "Discover something you'll love from our categories.",
+  "productSizes": "Sizes",
+  "productAddOns": "Add-ons",
+  "productViewCart": "View Cart",
+  "productBackInStockHint": "We'll let you know when it's back.",
+  "addressesSearchHint": "Search for area, street name...",
+  "addressesCurrentLocation": "Current Location",
+  "addressesAddNew": "Add New Address",
+  "addressesSaved": "Saved Addresses",
+  "addressesSuggestions": "Suggestions",
+  "addressesSelected": "Selected",
+  "addressesMoreOptions": "More options for {name}",
+  "@addressesMoreOptions": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "addressesGuestTitle": "Login to Save Your Addresses",
+  "addressesGuestMessage": "Login to save your addresses and access them easily whenever you need them.",
+  "addressesEmptyTitle": "No Saved Addresses",
+  "addressesEmptyMessage": "Add your address for faster checkout and easier delivery.",
+  "addressesNotFoundTitle": "We couldn’t find this location matching “{query}”",
+  "@addressesNotFoundTitle": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "addressesNotFoundMessage": "Try searching the locality/nearby landmark.",
+  "addressesDeleteTitle": "Delete this address?",
+  "addressesDeleteMessage": "{name} will be removed from your saved addresses.",
+  "@addressesDeleteMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "mapPinHint": "Move pin to your exact delivery location",
+  "mapLoginPrompt": "Login to use your saved addresses",
+  "mapDeliverHere": "Order will be delivered here",
+  "mapConfirm": "Confirm Location",
+  "mosquesEmptyTitle": "No mosques nearby",
+  "mosquesEmptyMessage": "We couldn't find a mosque near you yet. Try again later.",
+  "mapLocating": "Finding the address…",
+  "mapOutsideTitle": "This location is outside our delivery area",
+  "mapOutsideMessage": "We currently don’t deliver to this location. Try a nearby location or choose from your saved addresses.",
+  "mapPlaceholder": "Map preview. Drag to move the pin.",
+  "addressFormNewTitle": "Complete Your Address",
+  "addressFormEditTitle": "Edit Your Address",
+  "addressFormChange": "Change",
+  "addressFormPhotosTitle": "Help drivers Find You Faster!",
+  "addressFormPhotosMessage": "Add a photo to auto-fill your address.",
+  "addressFormBluePlate": "Blue Board Photo",
+  "addressFormBuildingPhoto": "Add Building photo",
+  "addressFormRemovePhoto": "Remove photo",
+  "addressFormUploadTitle": "Upload an Image",
+  "addressFormCapture": "Capture",
+  "addressFormGallery": "Upload from Gallery",
+  "addressFormZone": "Zone",
+  "addressFormStreet": "Street",
+  "addressFormBuilding": "Building Number",
+  "addressFormUnit": "Flat / Unit Number",
+  "addressFormType": "Location Type",
+  "addressFormOther": "Other",
+  "addressFormDirections": "How to Reach (Optional)",
+  "addressFormDirectionsHint": "Enter",
+  "addressFormDefault": "Set this address as default",
+  "addressTypeHome": "Home",
+  "addressTypeWork": "Work",
+  "addressTypeFamily": "Family",
+  "addressTypeOther": "Other",
+  "addressTypeMosque": "Mosque",
+  "favouritesTitle": "My Favourite",
+  "favouritesSubtitle": "We know you love it!",
+  "favouritesEmptyTitle": "No favourites yet",
+  "favouritesEmptyMessage": "Love something? Add it to your favourites for easy access later.",
+  "favouritesGuestMessage": "Sign up or log in to wishlist items and access them later.",
+  "favouritesViewProducts": "View Products",
+  "checkoutTitle": "Checkout",
+  "checkoutEdit": "EDIT",
+  "checkoutChange": "CHANGE",
+  "checkoutDeliveryMode": "Delivery Mode",
+  "checkoutRepeatHint": "Select Repeat Date & Time of Delivery",
+  "checkoutDeliverHere": "We’ll deliver your order here",
+  "checkoutNoAddress": "Add an address to deliver to",
+  "checkoutAwayNotice": "You're away from the selected location. Tap change to order from your current location.",
+  "checkoutOutsideQatarNotice": "You're outside Qatar. Tap Change Location to order. Only card payments are available (COD disabled).",
+  "checkoutInstruction": "Special Instruction (Optional)",
+  "checkoutInstructionHint": "Add special instructions",
+  "checkoutAdd": "Add",
+  "checkoutEditInstruction": "Edit",
+  "checkoutBillSummary": "Bill Summary",
+  "checkoutBillLine": "{name} ({volume} ML x {pack}) x{qty}",
+  "@checkoutBillLine": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "volume": {
+        "type": "int"
+      },
+      "pack": {
+        "type": "int"
+      },
+      "qty": {
+        "type": "int"
+      }
+    }
+  },
+  "checkoutRepeatBillNote": "Pay for your recent delivery now. Future payment reminders will appear on My Orders and Home",
+  "checkoutShowBill": "Show bill details",
+  "checkoutHideBill": "Hide bill details",
+  "checkoutPaymentMethod": "Payment Method",
+  "checkoutPayByCard": "Pay by Card",
+  "checkoutSavedCards": "Saved Cards",
+  "checkoutCardMasked": "{brand} •••• •••• •••• {last4}",
+  "@checkoutCardMasked": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      },
+      "last4": {
+        "type": "String"
+      }
+    }
+  },
+  "checkoutCardExpires": "Expires {expiry}",
+  "@checkoutCardExpires": {
+    "placeholders": {
+      "expiry": {
+        "type": "String"
+      }
+    }
+  },
+  "checkoutBrandVisa": "Visa",
+  "checkoutBrandMastercard": "Mastercard",
+  "checkoutBrandAmex": "Amex",
+  "checkoutBrandOther": "Card",
+  "checkoutCvv": "CVV",
+  "checkoutAddNewCard": "Add New Card",
+  "checkoutPayByQPay": "Pay by QPay",
+  "checkoutQPaySubtitle": "Pay with your QPay debit card",
+  "checkoutPayByCash": "Pay by Cash",
+  "checkoutCashSubtitle": "Pay cash directly to driver",
+  "checkoutTaxNote": "Prices are inclusive of Taxes",
+  "checkoutPlaceOrder": "Place Order",
+  "checkoutToday": "Today",
+  "checkoutTomorrow": "Tomorrow",
+  "checkoutAnotherDate": "Choose Another Date",
+  "checkoutWhenToday": "Today, {slot}",
+  "@checkoutWhenToday": {
+    "placeholders": {
+      "slot": {
+        "type": "String"
+      }
+    }
+  },
+  "checkoutWhenTomorrow": "Tomorrow, {slot}",
+  "@checkoutWhenTomorrow": {
+    "placeholders": {
+      "slot": {
+        "type": "String"
+      }
+    }
+  },
+  "checkoutWhenDate": "{date} | {slot}",
+  "@checkoutWhenDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "slot": {
+        "type": "String"
+      }
+    }
+  },
+  "checkoutWhenDay": "{date}, {slot}",
+  "@checkoutWhenDay": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "slot": {
+        "type": "String"
+      }
+    }
+  },
+  "checkoutSlotSheetTitle": "Select Date & Time For Delivery",
+  "checkoutDate": "Date",
+  "checkoutTimeSlot": "Time Slot",
+  "checkoutEstimated": "Estimated delivery schedule",
+  "checkoutConfirm": "Confirm",
+  "checkoutChangeDate": "Change date",
+  "checkoutPrevMonth": "Previous month",
+  "checkoutNextMonth": "Next month",
+  "checkoutFrequency": "Frequency",
+  "checkoutWeekly": "Weekly",
+  "checkoutMonthly": "Monthly",
+  "checkoutUntilCancel": "Until I Cancel",
+  "checkoutInstructionSheetHint": "Type your special instruction...",
+  "checkoutChipNoBell": "Don't ring the bell",
+  "checkoutChipDoor": "Deliver at the door",
+  "checkoutChipHand": "Hand me the order",
+  "checkoutCounter": "{count}/{max}",
+  "@checkoutCounter": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "checkoutCardNumber": "Card Number",
+  "checkoutCardNumberHint": "0000 0000 0000 0000",
+  "checkoutCardHolder": "Card Holder Name",
+  "checkoutExpiry": "Expiry",
+  "checkoutExpiryHint": "MM/YY",
+  "checkoutSaveCard": "Save card for future payments",
+  "paymentDetailsTitle": "Payment Details",
+  "paymentHoldOn": "Hold On!",
+  "paymentVerifying": "We are verifying your payment status",
+  "paymentNoteLabel": "Note:",
+  "paymentNoteText": "Do not hit back button or close this screen until the transaction is complete",
+  "paymentCancelTitle": "Are you sure you want to cancel the payment?",
+  "paymentCancelMessage": "The payment request will get cancelled as we are confirming your payment status.",
+  "paymentNotNow": "Not Now",
+  "paymentYesCancel": "Yes, Cancel",
+  "paymentFailedTitle": "Your payment failed",
+  "paymentChangeMethod": "Change Payment Method",
+  "receiptItems": "Items",
+  "receiptQty": "{size} | Qty {qty}",
+  "@receiptQty": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      },
+      "qty": {
+        "type": "String"
+      }
+    }
+  },
+  "orderPlacedTitle": "Order Placed",
+  "orderPlacedThanks": "Thank you for your purchase!",
+  "receiptSpecialInstruction": "Special Instruction",
+  "receiptPaymentMode": "Payment Mode",
+  "receiptDeliveryDateTime": "Delivery Date & Time",
+  "profileEditTitle": "Edit Profile",
+  "commonNotNow": "Not Now",
+  "commonGoBack": "Go Back",
+  "languageNativeEnglish": "English",
+  "languageNativeArabic": "عربي",
+  "profileTitle": "Profile",
+  "profileGuestTitle": "Guest User",
+  "profileGuestMessage": "Login or sign up to view your complete profile",
+  "profileLoginSignUp": "Login/Sign Up",
+  "profileChangeLanguage": "Change language",
+  "profileLanguageShortEn": "Eng",
+  "profileLanguageShortAr": "عربي",
+  "profilePointsLabel": "Points",
+  "profilePointsWorth": "Worth {amount}",
+  "@profilePointsWorth": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "profilePointsExpiring": "{points} pts about expire in {days} days",
+  "@profilePointsExpiring": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "profileOpenRewards": "Open rewards",
+  "profileMyProfile": "My Profile",
+  "profileMyOrders": "My Orders",
+  "profileSavedAddress": "Saved Address",
+  "profileSavedCards": "Saved Cards",
+  "profileRewardsOffers": "Rewards & Offers",
+  "profileHowToEarn": "How to Earn & Redeem",
+  "profileOffers": "Offers",
+  "profileSupportMore": "Support & More",
+  "profileWhatsApp": "WhatsApp Support",
+  "profileTermsPolicies": "Terms & Policies",
+  "profileLogout": "Logout",
+  "profileChangeLanguageTitle": "Change Language",
+  "profileLogoutTitle": "Are you sure you want to logout?",
+  "profileLogoutMessage": "You won't be able to access your cart and saved items until you log back in.",
+  "profileWhatsAppUnavailableTitle": "WhatsApp is not available",
+  "profileWhatsAppUnavailableMessage": "Install WhatsApp or try again later.",
+  "commonOk": "OK",
+  "profileChangeMobile": "Change mobile number",
+  "profileChangeEmail": "Change email",
+  "profileChangeMobileTitle": "Are you sure you want to change mobile number?",
+  "profileChangeMobileMessage": "To change your mobile number, you'll first need to verify your existing number.",
+  "profileYesChange": "Yes, Change",
+  "profileVerifyEmailTitle": "Verify Your Email",
+  "profileNewMobileTitle": "Enter New Mobile Number",
+  "profileNewMobileSubtitle": "Enter the mobile number you'd like to use for your account.",
+  "profileNewEmailTitle": "Enter New Email",
+  "profileNewEmailSubtitle": "Enter the email you'd like to use for your account.",
+  "profileNumberTaken": "This number already exist",
+  "profileEmailTaken": "This email already exists",
+  "savedAddressesTitle": "Saved Addresses",
+  "savedAddressesEmptyTitle": "No saved addresses",
+  "savedAddressesEmptyMessage": "Add an address to make checkout faster and easier next time.",
+  "savedAddressesDeleteTitle": "Are you sure you want to delete this address?",
+  "savedCardsTitle": "Saved Cards",
+  "savedCardsEmptyTitle": "No saved cards",
+  "savedCardsGuestMessage": "log in to save your cards and use them for faster checkout.",
+  "savedCardsEmptyMessage": "Add a card to make checkout faster and easier next time.",
+  "savedCardsEditTitle": "Edit Card",
+  "savedCardsDeleteTitle": "Are you sure you want to delete this card?",
+  "savedCardsMore": "More options for {card}",
+  "@savedCardsMore": {
+    "placeholders": {
+      "card": {
+        "type": "String"
+      }
+    }
+  },
+  "offersTitle": "Offers",
+  "offersAvailable": "Available Coupons",
+  "offersCopyCode": "Copy Code",
+  "offersTermsTitle": "Terms & Conditions",
+  "offersUnderstood": "Understood",
+  "policiesTitle": "Terms & Policies",
+  "policyAboutUs": "About Us",
+  "policyTerms": "Terms & Conditions",
+  "policyPrivacy": "Privacy policy",
+  "policyRefund": "Return & Refund Policy",
+  "policyLastUpdated": "Last Updated {date}",
+  "@policyLastUpdated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteAccountLink": "Delete Account",
+  "deleteAccountConfirmTitle": "Are you sure you want to delete your account?",
+  "deleteAccountConfirmMessage": "Deleting account is permanent and all your data with Rayyan Waters will be permanently removed.",
+  "deleteAccountTitle": "Delete Account",
+  "deleteAccountIntro": "Please help us serve you better in future, Thanks.",
+  "deleteAccountQuestion": "What Do We Need To Improve?",
+  "deleteReasonPerformance": "App's Performance",
+  "deleteReasonPrivacy": "Privacy concerns",
+  "deleteReasonProducts": "Product offerings",
+  "deleteReasonService": "Service concerns",
+  "deleteReasonMultiple": "Multiple accounts",
+  "deleteReasonOthers": "Others",
+  "deleteAccountSkip": "Skip & Delete",
+  "deleteAccountProceed": "Proceed",
+  "deletedTitle": "Your Account Is Scheduled for Deletion",
+  "deletedMessage": "Changed your mind? Log in within 30 days to recover your account.",
+  "deletedGoLogin": "Go to Login",
+  "deletedContinueGuest": "Continue As Guest",
+  "ordersTitle": "My Orders",
+  "ordersTabOneTime": "One Time",
+  "ordersTabRecurring": "Recurring",
+  "ordersFilterAll": "All",
+  "ordersFilterDelivered": "Delivered",
+  "ordersFilterPickedUp": "Picked Up",
+  "ordersFilterConfirmed": "Confirmed",
+  "ordersFilterFailed": "Failed",
+  "ordersFilterCancelled": "Cancelled",
+  "orderStatusConfirmed": "Order Confirmed",
+  "orderStatusPickedUp": "Order Picked Up",
+  "orderStatusDelivered": "Delivered",
+  "orderStatusFailed": "Delivery Failed",
+  "orderStatusCancelled": "Cancelled",
+  "ordersTagPaid": "PAID",
+  "ordersTagCod": "COD",
+  "ordersItemCount": "{count, plural, =1{1 Item} other{{count} Items}}",
+  "@ordersItemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ordersItemQty": "{name} (Qty {qty})",
+  "@ordersItemQty": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "qty": {
+        "type": "int"
+      }
+    }
+  },
+  "ordersOpen": "View details, {status}",
+  "@ordersOpen": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "ordersEmptyTitle": "No Orders",
+  "ordersEmptyMessage": "Orders assigned to you will show here.",
+  "ordersFilterEmpty": "No orders with this status.",
+  "ordersRecurringEmptyTitle": "No recurring orders",
+  "ordersRecurringEmptyMessage": "Choose Repeat Order at checkout to get water delivered on a schedule.",
+  "ordersNextDelivery": "Next Delivery",
+  "subscriptionProgress": "{delivered}/{total} Delivered",
+  "@subscriptionProgress": {
+    "placeholders": {
+      "delivered": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "subscriptionOpenEnded": "{delivered} Delivered (until Cancelled)",
+  "@subscriptionOpenEnded": {
+    "placeholders": {
+      "delivered": {
+        "type": "int"
+      }
+    }
+  },
+  "subscriptionCancelledProgress": "Cancelled • {progress}",
+  "@subscriptionCancelledProgress": {
+    "placeholders": {
+      "progress": {
+        "type": "String"
+      }
+    }
+  },
+  "subscriptionPausedProgress": "Paused • {progress}",
+  "@subscriptionPausedProgress": {
+    "placeholders": {
+      "progress": {
+        "type": "String"
+      }
+    }
+  },
+  "orderTimeStamp": "{date} | {time}",
+  "@orderTimeStamp": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "orderTypeLabel": "Order Type",
+  "orderTypeRecurring": "Recurring Delivery",
+  "orderItems": "Items ({count})",
+  "@orderItems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "orderDriverDetails": "Driver Details",
+  "orderCallDriver": "Call the driver",
+  "orderPayAtDelivery": "Pay at the time of delivery",
+  "orderPayWithPoints": "{method} + Points",
+  "@orderPayWithPoints": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "orderPointsRedeemed": "Points Redeemed",
+  "orderPointsEarned": "Points Earned",
+  "orderPointsRevoked": "Points Revoked",
+  "orderPointsPlus": "+ {amount}",
+  "@orderPointsPlus": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "orderPointsMinus": "- {amount}",
+  "@orderPointsMinus": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "orderPointsPendingNote": "Reward points will be credited after delivery",
+  "orderPointsCancelledNote": "{points} points reversed due to cancellation",
+  "@orderPointsCancelledNote": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "orderPointsFailedNote": "{points} points reversed as the order failed",
+  "@orderPointsFailedNote": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "orderFailedNotice": "Payment failed. If any amount was deducted, it will be automatically refunded to your original payment method.",
+  "orderCancelledNotice": "Your order has been cancelled. We will reach out to you regarding your refund.",
+  "orderCancel": "Cancel",
+  "orderDownloadInvoice": "Download Invoice",
+  "orderPayForDelivery": "Pay For Delivery",
+  "orderCancelTitle": "Are you sure you want to cancel this order?",
+  "orderCancelMessage": "Once cancelled, this order cannot be restored. Are you sure you want to continue?",
+  "orderCancelConfirm": "Yes, Cancel",
+  "orderLinkFailed": "Couldn't open it. Please try again.",
+  "subscriptionStatusScheduled": "Order Scheduled",
+  "subscriptionStatusCompleted": "Order Completed",
+  "subscriptionStatusPaused": "Order Paused",
+  "subscriptionPausedNotice": "Your order is paused. To continue delivery, you need to resume it.",
+  "subscriptionPause": "Pause",
+  "subscriptionResume": "Resume",
+  "deliveryStatusDelivered": "Delivered",
+  "deliveryStatusPickedUp": "Order Picked Up",
+  "deliveryStatusYetToDeliver": "Yet To deliver",
+  "deliveryStatusPaused": "Paused",
+  "deliveryStatusCancelled": "Cancelled",
+  "deliveryNumbered": "{number}/{total} {status}",
+  "@deliveryNumbered": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "deliveryTaxNote": "Prices are inclusive of Taxes",
+  "deliveryPayNow": "Pay Now",
+  "cancelSubTitle": "Cancel Subscription",
+  "cancelReasonTooExpensive": "Too expensive",
+  "cancelReasonDelivery": "Delivery issues",
+  "cancelReasonSwitching": "Switching to another provider",
+  "cancelReasonPausing": "Pausing temporarily",
+  "cancelReasonQuality": "Product quality",
+  "cancelSubWarning": "This can't be undone. Any remaining deliveries are removed.",
+  "cancelSubPausedNotice": "Cancelling a paused subscription removes the remaining deliveries and closes it for good.",
+  "cancelSubConfirm": "Confirm Cancellation",
+  "refundSummary": "Refund Summary",
+  "refundRemaining": "Deliveries remaining",
+  "refundRemainingValue": "{remaining}/{total}",
+  "@refundRemainingValue": {
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "refundUnused": "Value of unused deliveries",
+  "refundDeductions": "Deductions (policy)",
+  "refundDue": "Refund due",
+  "refundCodNote": "For COD subscriptions there is nothing to refund — future deliveries were never charged.",
+  "refundConfirm": "Confirm & refund",
+  "cancelledTitle": "Your Subscription Has been Cancelled",
+  "cancelledMessage": "{name} has been cancelled.",
+  "@cancelledMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "cancelledOn": "Cancelled On",
+  "cancelledRefund": "Refund",
+  "cancelledGoHome": "Go To Home",
+  "cancelledOrderDetail": "Order Detail",
+  "pauseType": "Pause Type",
+  "pauseForDeliveries": "Pause for number of deliveries",
+  "pauseDaysSkipped": "Days skipped",
+  "pauseNextDelivery": "Next delivery",
+  "pauseNothingLeft": "There are no deliveries left to pause.",
+  "pauseFewer": "Fewer deliveries",
+  "pauseMore": "More deliveries",
+  "pauseSubmit": "Pause subscription",
+  "loyaltyTitle": "Loyalty Points",
+  "loyaltyHowTo": "How to earn and redeem",
+  "loyaltyTotalAvailable": "Total Available Points",
+  "loyaltyRate": "1pt = {amount}",
+  "@loyaltyRate": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "loyaltyPending": "+{points} Pending Points",
+  "@loyaltyPending": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "loyaltyPendingNote": "Will be credited after delivery",
+  "loyaltyExpiringSoon": "Expiring Soon",
+  "loyaltyPointsExpiringIn": "points expiring in",
+  "loyaltyDaysLeft": "{days, plural, =1{1 Day} other{{days} Days}}",
+  "@loyaltyDaysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "loyaltyFifoNote": "Oldest points are used first (FIFO). Points expire {months} months after they're earned.",
+  "@loyaltyFifoNote": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "loyaltyHowToEarn": "How To Earn & Redeem",
+  "loyaltyEarnLine": "Earn {points, plural, =1{1 Point} other{{points} Points}} for every QAR 1 Spent",
+  "@loyaltyEarnLine": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "loyaltyEarnNote": "Credited once your order is delivered",
+  "loyaltyRedeemLine": "{points} points = QAR 1 off your order",
+  "@loyaltyRedeemLine": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "loyaltyRedeemNote": "Min. {min} pts redemption, up to {percent}% of cart value",
+  "@loyaltyRedeemNote": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "loyaltyViewTerms": "View Full Terms",
+  "loyaltyHistory": "Transaction History",
+  "loyaltyFilterAll": "All",
+  "loyaltyFilterEarned": "Earned",
+  "loyaltyFilterRedeemed": "Redeemed",
+  "loyaltyFilterExpired": "Expired",
+  "loyaltyTxEarned": "Earned",
+  "loyaltyTxRedeemed": "Redeemed",
+  "loyaltyTxExpired": "Expired ({months} months)",
+  "@loyaltyTxExpired": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "loyaltyTxRefund": "Refund",
+  "loyaltyTxMeta": "{date} • {reference}",
+  "@loyaltyTxMeta": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "reference": {
+        "type": "String"
+      }
+    }
+  },
+  "loyaltyHistoryEmpty": "No points activity yet.",
+  "howTitle": "How to Earn & Redeem",
+  "howSubtitle": "Full transparency on your loyalty benefits",
+  "howEarningTitle": "Earning Points",
+  "howEarningTag": "1 QAR = {points, plural, =1{1 Point} other{{points} Points}}",
+  "@howEarningTag": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "howEarningBody": "Earn {points, plural, =1{1 point} other{{points} points}} for every QAR 1 spent on eligible purchases",
+  "@howEarningBody": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "howRedeemTitle": "Redeeming Points",
+  "howRedeemTag": "1 Point = {amount}",
+  "@howRedeemTag": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "howRedeemBody": "Each point is worth {amount} when redeemed at checkout",
+  "@howRedeemBody": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "howValidityTitle": "Points Validity",
+  "howValidityTag": "Valid for {months} months",
+  "@howValidityTag": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "howValidityBody": "Points expire {months} months after earning. Oldest points are used first (FIFO)",
+  "@howValidityBody": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "howRulesTitle": "Redemption Rules",
+  "howMinimumLabel": "Minimum",
+  "howMinimumValue": "{points} points",
+  "@howMinimumValue": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "howMaximumLabel": "Maximum",
+  "howMaximumValue": "{percent}% of cart",
+  "@howMaximumValue": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "howMultiplesLabel": "Use points in multiples of",
+  "howExampleTitle": "Example",
+  "howExampleBody": "On a {order} order, your max redemption is {max} ({points} pts) — well above the {min}-point minimum, so you're free to redeem anywhere in between.",
+  "@howExampleBody": {
+    "placeholders": {
+      "order": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      },
+      "points": {
+        "type": "String"
+      },
+      "min": {
+        "type": "String"
+      }
+    }
+  },
+  "howExclusions": "Exclusions",
+  "howExDelivery": "Delivery fees",
+  "howExDeliveryNote": "Excluded from points calculation",
+  "howExCod": "Cash on Delivery (COD) fees",
+  "howExCodNote": "Can't be offset with points",
+  "howExDiscounted": "Already discounted items",
+  "howExDiscountedNote": "Promotional SKUs don't earn or accept points",
+  "howExGift": "Gift cards",
+  "howExGiftNote": "Excluded from loyalty benefits",
+  "cartUsePoints": "Use Loyalty Points",
+  "cartAvailablePoints": "Available Points",
+  "cartPointsBalance": "{points} Pts",
+  "@cartPointsBalance": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "cartRedeemPoints": "Redeem points",
+  "cartRedeemHint": "Use {points} points to Save {amount}",
+  "@cartRedeemHint": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "cartEnterPoints": "Enter points to redeem",
+  "cartPointsRange": "Min {min} Pts • Max {max} pts",
+  "@cartPointsRange": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "cartPointsSuffix": "pts",
+  "cartPointsInvalid": "Enter a multiple of {step} from {min} to {max}.",
+  "@cartPointsInvalid": {
+    "placeholders": {
+      "step": {
+        "type": "String"
+      },
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "cartPointsPromo": "Points cannot be redeemed on promotional or discounted items in your cart.",
+  "cartPointsNotEnough": "You need at least {min} points to redeem rewards on this order.",
+  "@cartPointsNotEnough": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      }
+    }
+  },
+  "cartPointsCartSmall": "Add more items to redeem points. At least {min} points are needed.",
+  "@cartPointsCartSmall": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      }
+    }
+  },
+  "cartEarnNote": "Wow! Earn {points, plural, =1{1 Point} other{{points} Points}}, where 1 Point = {amount} in value",
+  "@cartEarnNote": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "orderPlacedOn": "Placed On",
+  "orderPaymentStatus": "Payment Status",
+  "ordersTagPending": "Pending",
+  "orderTypeDeliverNow": "Deliver Now",
+  "scheduleTitle": "Schedule Delivery",
+  "scheduleDeliveryDays": "Delivery Days (Max {count} Days)",
+  "@scheduleDeliveryDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "scheduleDeliveryPeriod": "Delivery Period",
+  "scheduleStartDate": "Start Date",
+  "scheduleDeliverUntil": "Deliver Until",
+  "scheduleSelect": "Select",
+  "schedulePerWeek": "{count, plural, =1{1 Delivery a week} other{{count} Deliveries a week}}",
+  "@schedulePerWeek": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "schedulePerMonth": "{count, plural, =1{1 Delivery a month} other{{count} Deliveries a month}}",
+  "@schedulePerMonth": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "scheduleWeekdayCount": "{count, plural, =1{1 {day}} other{{count} {day}s}}",
+  "@scheduleWeekdayCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "scheduleDateCount": "{count} × {day}",
+  "@scheduleDateCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "scheduleAnd": "{first} & {second}",
+  "@scheduleAnd": {
+    "placeholders": {
+      "first": {
+        "type": "String"
+      },
+      "second": {
+        "type": "String"
+      }
+    }
+  },
+  "scheduleSummary": "You will receive {count} deliveries, every {days} from {from} to {to}",
+  "@scheduleSummary": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "scheduleSummaryOpen": "You will receive deliveries every {days} from {from} until you cancel",
+  "@scheduleSummaryOpen": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      }
+    }
+  },
+  "scheduleNoFeb": "Please note that month of February does not have days beyond 28",
+  "scheduleNo31": "Please note that not all months have 31 days",
+  "scheduleMonths": "{count, plural, =1{1 Month} other{{count} Months}}",
+  "@scheduleMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "scheduleCustomEnd": "Custom End Date",
+  "scheduleUntil": "Until {period}",
+  "@scheduleUntil": {
+    "placeholders": {
+      "period": {
+        "type": "String"
+      }
+    }
+  },
+  "scheduleSlotTitle": "Delivery Slot",
+  "scheduleWeekly": "Weekly, {days}",
+  "@scheduleWeekly": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "scheduleMonthly": "Monthly, {days}",
+  "@scheduleMonthly": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "checkoutDeliverNow": "Deliver Now",
+  "checkoutDeliverNowHint": "Select Date & Time of Delivery",
+  "checkoutPaymentType": "Payment Type",
+  "payTypeTitle": "Select Payment Type",
+  "payTypeAsYouGo": "Pay as you go",
+  "payTypeAsYouGoBody": "Pay only for the next delivery. We’ll send a payment link before each subsequent delivery.",
+  "payTypeToday": "{amount} Today",
+  "@payTypeToday": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "payTypeUpfront": "Pay upfront",
+  "payTypeUpfrontBody": "Pay all deliveries in the next 4 weeks, or next month's deliveries.",
+  "payTypeUpfrontTotal": "{count} Deliveries × {price} = {total}",
+  "@payTypeUpfrontTotal": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "deliveryPayBefore": "Pay before {when} to receive your order",
+  "@deliveryPayBefore": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "upfrontCardTitle": "Pay Upfront",
+  "cancelDeliveryTitle": "Cancel Delivery",
+  "cancelDeliveryAll": "Cancel all deliveries",
+  "cancelDeliverySelect": "Select Date",
+  "cancelDeliveryNote": "Deliveries for your selected dates will be cancelled",
+  "pauseDeliveryTitle": "Pause Delivery",
+  "pauseDateRange": "Pause Date Range",
+  "pauseRecovery": "Choose Recovery",
+  "pauseRefund": "I Want Refund",
+  "pauseRefundAmount": "Refund Amount",
+  "pauseRefundLine": "{count} Deliveries × {price}",
+  "@pauseRefundLine": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "pauseExtend": "Extend Dates",
+  "pauseExtendedTill": "Extended Till",
+  "pauseSummary": "Summary",
+  "pauseRangeNote": "All your deliveries from {from} to {to} will be Paused",
+  "@pauseRangeNote": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "pauseRangeTitle": "Select Pause Until Date",
+  "pauseStart": "Start Date",
+  "pauseEnd": "End Date",
+  "pauseDaysValue": "{count, plural, =1{1 Day} other{{count} Days}}",
+  "@pauseDaysValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resumeTitle": "Select Resume Date",
+  "resumeFrom": "From",
+  "resumeTo": "To",
+  "resumeNote": "All your deliveries from {from} to {to} will be resumed",
+  "@resumeNote": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentCancelledTitle": "Your payment cancelled",
+  "scheduleSummaryCount": "{count, plural, =1{1 delivery} other{{count} deliveries}}",
+  "@scheduleSummaryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "splashTagline": "A hero behind every drop",
+  "authNeedHelp": "Need Help?",
+  "authContactUs": "Contact Us",
+  "homeCurrentTime": "Current Time",
+  "homeTodaysOrders": "Todays Orders",
+  "ordersSearchHint": "Search Order",
+  "pastOrdersTitle": "Past Orders",
+  "reassignedTitle": "Re-Assigned",
+  "orderStatusNewOrder": "New Order",
+  "orderStatusOrderPicked": "Order Picked",
+  "orderStatusDropOff": "Drop Off",
+  "orderStatusReassigned": "Re-Assigned",
+  "orderNumber": "#{number}",
+  "@orderNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentPaid": "PAID",
+  "paymentPending": "PENDING",
+  "paymentStatusLabel": "Payment Status",
+  "orderDeliveryDateTime": "Delivery Date & Time",
+  "orderAssignedOn": "Assigned On",
+  "orderDetailTitle": "Order Detail",
+  "orderTotalItems": "Total Items",
+  "orderItemPack": "{volume} ML x {bottles} Bottles",
+  "@orderItemPack": {
+    "placeholders": {
+      "volume": {
+        "type": "int"
+      },
+      "bottles": {
+        "type": "int"
+      }
+    }
+  },
+  "orderItemQuantity": "Qty {quantity}",
+  "@orderItemQuantity": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "orderDeliveryLocation": "Delivery Location",
+  "orderLocationPhotos": "This will help you reach faster!",
+  "orderCustomerDetail": "Customer Detail",
+  "orderSpecialInstruction": "Special Instruction",
+  "orderReasonReassign": "Reason for reassign",
+  "orderReasonFail": "Reason for fail delivery",
+  "orderReassign": "Re-Assign",
+  "orderContactSupport": "Contact Support",
+  "orderFailDelivery": "Fail Delivery",
+  "orderMarkDelivered": "Mark As Deliver",
+  "orderCashCollected": "Cash Collected",
+  "orderTotalAmount": "Total Amount",
+  "orderDirections": "Directions",
+  "orderCallCustomer": "Call customer",
+  "reassignTitle": "Re-Assign Order",
+  "reassignMessage": "Are you sure you want to re-assign this order to another driver?",
+  "reassignReasonHint": "Leave Reason",
+  "commonConfirm": "Confirm",
+  "commonSubmit": "Submit",
+  "failDeliveryTitle": "Fail Delivery",
+  "failDeliveryPrompt": "Select A Reason For Failing This Delivery.",
+  "failReasonCustomerNotAvailable": "Customer not available",
+  "failReasonWrongAddress": "Wrong address provided",
+  "failReasonAccessDenied": "Access denied / No entry",
+  "failReasonPackageDamaged": "Package damaged",
+  "failReasonRefused": "Refused delivery",
+  "failReasonOther": "Others",
+  "failReasonHint": "Reason",
+  "profileMyDetails": "My Details",
+  "profilePrivacyPolicies": "Privacy & Policies",
+  "faqsTitle": "FAQs",
+  "faqsSubtitle": "Frequently asked questions",
+  "faqsEmpty": "No questions yet",
+  "detailsEmail": "Email",
+  "detailsMobile": "Mobile Number",
+  "detailsZone": "Zone",
+  "detailsRouteId": "Route ID",
+  "detailsVehicleNumber": "Vehicle Number",
+  "failReasonRequired": "Select a reason for this failed delivery."
+}
