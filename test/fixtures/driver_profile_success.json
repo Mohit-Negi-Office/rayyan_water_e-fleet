@@ -1,0 +1,57 @@
+{
+  "code": 200,
+  "status": "OK",
+  "timestamp": 1794851911804,
+  "data": {
+    "driverId": "6af5e2860ab2b6bc2df57dfc",
+    "name": "Suresh Nair",
+    "driverCode": "DRV1007",
+    "email": "suresh.drv1007@rayyanwater.qa",
+    "phoneNo": "66210222",
+    "countryCode": "974",
+    "licenseNumber": "QL-28400322",
+    "licenseExpiryDate": "2029-07-10T00:00:00.000Z",
+    "dateOfBirth": "1986-07-07T00:00:00.000Z",
+    "joiningDate": "2022-07-05T00:00:00.000Z",
+    "nationality": "India",
+    "status": 1,
+    "vehicle": {
+      "vehicleType": "Van",
+      "vehicleNumber": "318238",
+      "vehicleModel": "Toyota Hiace",
+      "vehicleColour": "Silver",
+      "vehicleCapacity": 120,
+      "registrationNumber": "QA-REG-880266",
+      "insuranceExpiryDate": "2027-07-20T00:00:00.000Z",
+      "modelYear": 2024,
+      "pickUpLocation": "Lusail Depot",
+      "routeId": "RT-007",
+      "customFieldA1": "Fuel card FC-4106",
+      "customFieldV1": "GPS tracker GT-7306"
+    },
+    "workDetails": {
+      "zones": [
+        {
+          "name": "Doha North",
+          "number": 1
+        }
+      ],
+      "availabilityStatus": 1,
+      "workingHours": {
+        "start": "7:00 AM",
+        "end": "4:00 PM"
+      },
+      "daysAvailable": [1, 2, 3, 4, 7]
+    },
+    "emergencyContact": {
+      "contactName": "Fahad (Family)",
+      "contactNumber": "97433400106"
+    },
+    "photo": "",
+    "statusReason": "",
+    "lastLoginAt": "2026-11-16T17:58:26.366Z",
+    "createdAt": "2026-11-12T16:00:06.220Z",
+    "updatedAt": "2026-11-16T17:58:26.367Z"
+  },
+  "error": null
+}

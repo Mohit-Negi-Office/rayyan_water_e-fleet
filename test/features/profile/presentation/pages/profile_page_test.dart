@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,12 +15,15 @@ import 'package:rayyan_driver/features/onboarding/domain/usecases/get_saved_lang
 import 'package:rayyan_driver/features/onboarding/domain/usecases/save_language.dart';
 import 'package:rayyan_driver/features/profile/domain/entities/driver_profile.dart';
 import 'package:rayyan_driver/features/profile/domain/usecases/get_profile.dart';
+import 'package:rayyan_driver/features/profile/domain/usecases/request_profile.dart';
 import 'package:rayyan_driver/features/profile/presentation/bloc/logout_cubit.dart';
 import 'package:rayyan_driver/features/profile/presentation/pages/profile_page.dart';
 
 import '../../../../helpers/pump_app.dart';
 
 class _MockGetProfile extends Mock implements GetProfile {}
+
+class _MockRequestProfile extends Mock implements RequestProfile {}
 
 class _MockGetSavedLanguage extends Mock implements GetSavedLanguage {}
 
@@ -39,18 +44,44 @@ const _driver = DriverProfile(
 
 void main() {
   late DriverProfileCubit profile;
+  late _MockRequestProfile requestProfile;
 
   setUpAll(() => registerFallbackValue(const NoParams()));
 
   setUp(() {
     final getProfile = _MockGetProfile();
+    requestProfile = _MockRequestProfile();
     when(
       () => getProfile(any()),
     ).thenAnswer((_) async => const Success(_driver));
-    profile = DriverProfileCubit(getProfile);
+    when(
+      () => requestProfile(any()),
+    ).thenAnswer((_) async => const Success(_driver));
+    profile = DriverProfileCubit(getProfile, requestProfile);
   });
 
   tearDown(() => profile.close());
+
+  testWidgets('asks the server for the driver profile', (tester) async {
+    await profile.load();
+    await tester.pumpApp(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => AuthCubit()),
+          BlocProvider.value(value: profile),
+          BlocProvider(
+            create: (_) =>
+                LocaleCubit(_MockGetSavedLanguage(), _MockSaveLanguage()),
+          ),
+          BlocProvider(create: (_) => LogoutCubit(_MockLogout())),
+        ],
+        child: const ProfileView(),
+      ),
+    );
+    await tester.pump();
+
+    verify(() => requestProfile(any())).called(1);
+  });
 
   testWidgets('keeps the photo and name fixed while the menu scrolls', (
     tester,
@@ -153,7 +184,7 @@ void main() {
         ),
       ],
     );
-    router.push('/profile');
+    unawaited(router.push('/profile'));
     await tester.pumpAndSettle();
 
     expect(find.byTooltip('Back'), findsOneWidget);

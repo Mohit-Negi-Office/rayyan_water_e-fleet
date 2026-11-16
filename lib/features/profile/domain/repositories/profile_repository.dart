@@ -3,4 +3,7 @@ import 'package:rayyan_driver/features/profile/domain/entities/driver_profile.da
 
 abstract interface class ProfileRepository {
   Future<Result<DriverProfile>> getProfile();
+
+  /// Loads the signed-in driver and stores that driver object.
+  Future<Result<DriverProfile>> requestProfile();
 }

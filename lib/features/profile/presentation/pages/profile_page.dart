@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -70,52 +72,75 @@ class ProfileView extends StatelessWidget {
     final top = MediaQuery.paddingOf(context).top;
     final state = context.watch<DriverProfileCubit>().state;
     final canPop = GoRouter.maybeOf(context)?.canPop() ?? false;
-    return BlocListener<LogoutCubit, LogoutState>(
-      listenWhen: (_, now) => now is LogoutDone,
-      listener: (context, _) => context.read<AuthCubit>().signedOut(),
-      child: TintedScaffold(
-        body: Stack(
-          fit: StackFit.expand,
-          children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: CurvedBrandHeader(
-                crest: CurvedBrandHeader.profileCrest - _figmaStatusBar + top,
-              ),
-            ),
-            Column(
-              children: [
-                _ProfileIdentity(state: state, top: top),
-                const SizedBox(height: _menuGap),
-                Expanded(
-                  child: ListView(
-                    physics: const ClampingScrollPhysics(),
-                    padding: EdgeInsets.fromLTRB(
-                      AppSpacing.screenGutter,
-                      0,
-                      AppSpacing.screenGutter,
-                      AppSpacing.s6 + MediaQuery.paddingOf(context).bottom,
-                    ),
-                    children: [
-                      ProfileMenu(onLogout: () => _confirmLogout(context)),
-                    ],
-                  ),
+    return _RequestProfileOnOpen(
+      child: BlocListener<LogoutCubit, LogoutState>(
+        listenWhen: (_, now) => now is LogoutDone,
+        listener: (context, _) => context.read<AuthCubit>().signedOut(),
+        child: TintedScaffold(
+          body: Stack(
+            fit: StackFit.expand,
+            children: [
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: CurvedBrandHeader(
+                  crest: CurvedBrandHeader.profileCrest - _figmaStatusBar + top,
                 ),
-              ],
-            ),
-            if (canPop)
-              PositionedDirectional(
-                start: AppSpacing.screenGutter,
-                top: top + _backTop,
-                child: const AppBackButton.onBrand(),
               ),
-          ],
+              Column(
+                children: [
+                  _ProfileIdentity(state: state, top: top),
+                  const SizedBox(height: _menuGap),
+                  Expanded(
+                    child: ListView(
+                      physics: const ClampingScrollPhysics(),
+                      padding: EdgeInsets.fromLTRB(
+                        AppSpacing.screenGutter,
+                        0,
+                        AppSpacing.screenGutter,
+                        AppSpacing.s6 + MediaQuery.paddingOf(context).bottom,
+                      ),
+                      children: [
+                        ProfileMenu(onLogout: () => _confirmLogout(context)),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              if (canPop)
+                PositionedDirectional(
+                  start: AppSpacing.screenGutter,
+                  top: top + _backTop,
+                  child: const AppBackButton.onBrand(),
+                ),
+            ],
+          ),
         ),
       ),
     );
   }
+}
+
+/// Starts the driver-profile request when this screen opens.
+class _RequestProfileOnOpen extends StatefulWidget {
+  const _RequestProfileOnOpen({required this.child});
+
+  final Widget child;
+
+  @override
+  State<_RequestProfileOnOpen> createState() => _RequestProfileOnOpenState();
+}
+
+class _RequestProfileOnOpenState extends State<_RequestProfileOnOpen> {
+  @override
+  void initState() {
+    super.initState();
+    unawaited(context.read<DriverProfileCubit>().refresh());
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
 }
 
 /// Photo, name and driver code. Stays put while the menu scrolls.

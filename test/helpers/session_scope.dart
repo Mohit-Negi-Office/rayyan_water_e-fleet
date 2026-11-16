@@ -7,6 +7,7 @@ import 'package:rayyan_driver/features/profile/data/datasources/profile_remote_d
 import 'package:rayyan_driver/features/profile/data/models/driver_details_model.dart';
 import 'package:rayyan_driver/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:rayyan_driver/features/profile/domain/usecases/get_profile.dart';
+import 'package:rayyan_driver/features/profile/domain/usecases/request_profile.dart';
 
 /// App-wide session cubits over the demo profile, for widget tests.
 final class SessionCubits {
@@ -14,6 +15,9 @@ final class SessionCubits {
     : auth = AuthCubit(),
       profile = DriverProfileCubit(
         const GetProfile(
+          ProfileRepositoryImpl(_NoStoredDriver(), ProfileMockDataSource()),
+        ),
+        const RequestProfile(
           ProfileRepositoryImpl(_NoStoredDriver(), ProfileMockDataSource()),
         ),
       );
@@ -40,4 +44,7 @@ final class _NoStoredDriver implements ProfileLocalDataSource {
 
   @override
   Future<DriverDetailsModel?> read() async => null;
+
+  @override
+  Future<void> write(Map<String, dynamic> driver) async {}
 }

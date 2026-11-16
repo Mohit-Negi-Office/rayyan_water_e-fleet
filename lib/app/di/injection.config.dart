@@ -23,6 +23,8 @@ import 'package:rayyan_driver/core/network/device_id_store.dart' as _i448;
 import 'package:rayyan_driver/core/network/device_type.dart' as _i151;
 import 'package:rayyan_driver/core/network/interceptors/accept_language_interceptor.dart'
     as _i1017;
+import 'package:rayyan_driver/core/network/interceptors/bearer_auth_interceptor.dart'
+    as _i561;
 import 'package:rayyan_driver/core/network/interceptors/device_id_interceptor.dart'
     as _i735;
 import 'package:rayyan_driver/core/storage/key_value_storage.dart' as _i1054;
@@ -99,6 +101,8 @@ import 'package:rayyan_driver/features/profile/domain/repositories/profile_repos
     as _i286;
 import 'package:rayyan_driver/features/profile/domain/usecases/get_profile.dart'
     as _i442;
+import 'package:rayyan_driver/features/profile/domain/usecases/request_profile.dart'
+    as _i465;
 import 'package:rayyan_driver/features/profile/presentation/bloc/logout_cubit.dart'
     as _i117;
 import 'package:rayyan_driver/features/support/data/datasources/support_remote_data_source.dart'
@@ -162,6 +166,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i777.ProfileLocalDataSource>(
       () => _i777.ProfileLocalDataSourceImpl(gh<_i441.SecureStorage>()),
     );
+    gh.lazySingleton<_i561.BearerAuthInterceptor>(
+      () => _i561.BearerAuthInterceptor(gh<_i441.SecureStorage>()),
+    );
     gh.lazySingleton<_i625.AuthTokenLocalDataSource>(
       () => _i625.AuthTokenLocalDataSource(gh<_i441.SecureStorage>()),
     );
@@ -197,6 +204,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => registerModule.dio(
         gh<_i1017.AcceptLanguageInterceptor>(),
         gh<_i735.DeviceIdInterceptor>(),
+        gh<_i561.BearerAuthInterceptor>(),
       ),
     );
     gh.lazySingleton<_i536.LocaleCubit>(
@@ -303,6 +311,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i442.GetProfile>(
       () => _i442.GetProfile(gh<_i286.ProfileRepository>()),
     );
+    gh.factory<_i465.RequestProfile>(
+      () => _i465.RequestProfile(gh<_i286.ProfileRepository>()),
+    );
+    gh.lazySingleton<_i109.DriverProfileCubit>(
+      () => _i109.DriverProfileCubit(
+        gh<_i442.GetProfile>(),
+        gh<_i465.RequestProfile>(),
+      ),
+    );
     gh.factoryParam<_i660.ReassignCubit, String, dynamic>(
       (orderId, _) => _i660.ReassignCubit(gh<_i106.ReassignOrder>(), orderId),
     );
@@ -312,9 +329,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factoryParam<_i222.PolicyCubit, _i650.PolicyType, dynamic>(
       (_type, _) => _i222.PolicyCubit(gh<_i603.GetPolicy>(), _type),
-    );
-    gh.lazySingleton<_i109.DriverProfileCubit>(
-      () => _i109.DriverProfileCubit(gh<_i442.GetProfile>()),
     );
     gh.factory<_i50.FaqsCubit>(() => _i50.FaqsCubit(gh<_i603.GetFaqs>()));
     return this;

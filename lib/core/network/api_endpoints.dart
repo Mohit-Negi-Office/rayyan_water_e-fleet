@@ -18,7 +18,8 @@ abstract final class ApiEndpoints {
   /// Login OTP verify: `POST /user-service/v1/otp/verify`.
   static const String authOtpVerify = '/user-service/v1/otp/verify';
 
-  static const String profile = '/driver/me';
+  /// Signed-in driver: `GET /user-service/v1/profile/driver`.
+  static const String profile = '/user-service/v1/profile/driver';
   static String policy(String type) => '/policies/$type';
   static const String faqs = '/driver/faqs';
 

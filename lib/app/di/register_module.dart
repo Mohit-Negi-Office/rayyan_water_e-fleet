@@ -7,6 +7,7 @@ import 'package:rayyan_driver/core/debug/api_log_inspector.dart';
 import 'package:rayyan_driver/core/network/app_config.dart';
 import 'package:rayyan_driver/core/network/interceptors/accept_language_interceptor.dart';
 import 'package:rayyan_driver/core/network/interceptors/api_debug_log_interceptor.dart';
+import 'package:rayyan_driver/core/network/interceptors/bearer_auth_interceptor.dart';
 import 'package:rayyan_driver/core/network/interceptors/device_id_interceptor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,6 +24,7 @@ abstract class RegisterModule {
   Dio dio(
     AcceptLanguageInterceptor acceptLanguage,
     DeviceIdInterceptor deviceId,
+    BearerAuthInterceptor bearerAuth,
   ) {
     final dio = Dio(
       BaseOptions(
@@ -33,10 +35,11 @@ abstract class RegisterModule {
         headers: const {Headers.acceptHeader: Headers.jsonContentType},
       ),
     );
-    // TODO(backend): add the session token and refresh interceptor.
+    // TODO(backend): refresh the session token when it expires.
     // Login OTP sends basic auth from the env file.
     dio.interceptors.add(acceptLanguage);
     dio.interceptors.add(deviceId);
+    dio.interceptors.add(bearerAuth);
     if (AppConfig.enableLogs) {
       dio.interceptors.add(ApiDebugLogInterceptor());
     }

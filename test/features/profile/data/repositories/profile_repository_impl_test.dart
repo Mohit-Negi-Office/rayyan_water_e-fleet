@@ -4,8 +4,10 @@ import 'package:rayyan_driver/core/error/result.dart';
 import 'package:rayyan_driver/features/profile/data/datasources/profile_local_data_source.dart';
 import 'package:rayyan_driver/features/profile/data/datasources/profile_remote_data_source.dart';
 import 'package:rayyan_driver/features/profile/data/models/driver_details_model.dart';
-import 'package:rayyan_driver/features/profile/data/models/driver_profile_model.dart';
+import 'package:rayyan_driver/features/profile/data/models/driver_profile_response.dart';
 import 'package:rayyan_driver/features/profile/data/repositories/profile_repository_impl.dart';
+
+import '../../../../helpers/fixture.dart';
 
 class _MockLocal extends Mock implements ProfileLocalDataSource {}
 
@@ -15,11 +17,18 @@ void main() {
   late _MockLocal local;
   late _MockRemote remote;
   late ProfileRepositoryImpl repository;
+  late Map<String, dynamic> driver;
+
+  setUpAll(() => registerFallbackValue(<String, dynamic>{}));
 
   setUp(() {
     local = _MockLocal();
     remote = _MockRemote();
     repository = ProfileRepositoryImpl(local, remote);
+    driver = DriverProfileResponse.fromBody(
+      fixture('driver_profile_success.json'),
+    ).driver;
+    when(() => local.write(any())).thenAnswer((_) async {});
   });
 
   test('shows the driver saved at login', () async {
@@ -39,25 +48,26 @@ void main() {
     final result = await repository.getProfile();
 
     expect(result, Success(stored.toEntity()));
-    verifyNever(() => remote.fetchProfile());
+    verifyNever(() => remote.requestProfile());
   });
 
-  test('asks the server when nothing is stored', () async {
-    const remoteDriver = DriverProfileModel(
-      name: 'Ahmed Mirza',
-      code: 'AD16426',
-      email: 'ahmed.mirza@gmail.com',
-      dialCode: '+971',
-      phone: '2562899707',
-      zone: '2',
-      routeId: 'RT-021',
-      vehicleNumber: 'QA0922',
-    );
+  test('asks the server and stores the driver when nothing is saved', () async {
     when(() => local.read()).thenAnswer((_) async => null);
-    when(() => remote.fetchProfile()).thenAnswer((_) async => remoteDriver);
+    when(() => remote.requestProfile()).thenAnswer((_) async => driver);
 
     final result = await repository.getProfile();
 
-    expect(result, Success(remoteDriver.toEntity()));
+    expect(result, Success(DriverDetailsModel.fromJson(driver).toEntity()));
+    verify(() => local.write(driver)).called(1);
+  });
+
+  test('stores the driver whenever the profile endpoint is hit', () async {
+    when(() => remote.requestProfile()).thenAnswer((_) async => driver);
+
+    final result = await repository.requestProfile();
+
+    expect(result, Success(DriverDetailsModel.fromJson(driver).toEntity()));
+    verify(() => local.write(driver)).called(1);
+    verifyNever(() => local.read());
   });
 }
