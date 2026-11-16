@@ -19,8 +19,12 @@ import 'package:rayyan_driver/app/locale/locale_cubit.dart' as _i536;
 import 'package:rayyan_driver/app/session/auth_cubit.dart' as _i12;
 import 'package:rayyan_driver/app/session/driver_profile_cubit.dart' as _i109;
 import 'package:rayyan_driver/core/network/api_client.dart' as _i518;
+import 'package:rayyan_driver/core/network/device_id_store.dart' as _i448;
+import 'package:rayyan_driver/core/network/device_type.dart' as _i151;
 import 'package:rayyan_driver/core/network/interceptors/accept_language_interceptor.dart'
     as _i1017;
+import 'package:rayyan_driver/core/network/interceptors/device_id_interceptor.dart'
+    as _i735;
 import 'package:rayyan_driver/core/storage/key_value_storage.dart' as _i1054;
 import 'package:rayyan_driver/core/storage/secure_storage.dart' as _i441;
 import 'package:rayyan_driver/core/utils/clock.dart' as _i335;
@@ -85,6 +89,8 @@ import 'package:rayyan_driver/features/orders/presentation/bloc/orders_list_cubi
     as _i782;
 import 'package:rayyan_driver/features/orders/presentation/bloc/reassign_cubit.dart'
     as _i660;
+import 'package:rayyan_driver/features/profile/data/datasources/profile_local_data_source.dart'
+    as _i777;
 import 'package:rayyan_driver/features/profile/data/datasources/profile_remote_data_source.dart'
     as _i181;
 import 'package:rayyan_driver/features/profile/data/repositories/profile_repository_impl.dart'
@@ -136,6 +142,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => const _i944.AuthMockDataSource(),
       registerFor: {_mock},
     );
+    gh.lazySingleton<_i151.DeviceTypeReader>(
+      () => const _i151.PlatformDeviceTypeReader(),
+    );
     gh.lazySingleton<_i181.ProfileRemoteDataSource>(
       () => const _i181.ProfileMockDataSource(),
       registerFor: {_mock},
@@ -149,6 +158,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i441.SecureStorage>(
       () => _i441.FlutterSecureStorageImpl(gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.lazySingleton<_i777.ProfileLocalDataSource>(
+      () => _i777.ProfileLocalDataSourceImpl(gh<_i441.SecureStorage>()),
     );
     gh.lazySingleton<_i625.AuthTokenLocalDataSource>(
       () => _i625.AuthTokenLocalDataSource(gh<_i441.SecureStorage>()),
@@ -166,20 +178,44 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i400.LanguageLocalDataSource>(
       () => _i400.LanguageLocalDataSourceImpl(gh<_i1054.KeyValueStorage>()),
     );
+    gh.lazySingleton<_i448.DeviceIdStore>(
+      () => _i448.PersistentDeviceIdStore(gh<_i1054.KeyValueStorage>()),
+    );
+    gh.lazySingleton<_i870.LanguageRepository>(
+      () => _i326.LanguageRepositoryImpl(gh<_i400.LanguageLocalDataSource>()),
+    );
+    gh.lazySingleton<_i735.DeviceIdInterceptor>(
+      () => _i735.DeviceIdInterceptor(gh<_i448.DeviceIdStore>()),
+    );
+    gh.factory<_i247.GetSavedLanguage>(
+      () => _i247.GetSavedLanguage(gh<_i870.LanguageRepository>()),
+    );
+    gh.factory<_i517.SaveLanguage>(
+      () => _i517.SaveLanguage(gh<_i870.LanguageRepository>()),
+    );
     gh.lazySingleton<_i361.Dio>(
-      () => registerModule.dio(gh<_i1017.AcceptLanguageInterceptor>()),
+      () => registerModule.dio(
+        gh<_i1017.AcceptLanguageInterceptor>(),
+        gh<_i735.DeviceIdInterceptor>(),
+      ),
+    );
+    gh.lazySingleton<_i536.LocaleCubit>(
+      () => _i536.LocaleCubit(
+        gh<_i247.GetSavedLanguage>(),
+        gh<_i517.SaveLanguage>(),
+      ),
     );
     gh.lazySingleton<_i518.ApiClient>(() => _i518.ApiClient(gh<_i361.Dio>()));
-    gh.lazySingleton<_i526.AuthRemoteDataSource>(
-      () => _i526.AuthRemoteDataSourceImpl(gh<_i518.ApiClient>()),
-      registerFor: {_prod},
-    );
     gh.lazySingleton<_i492.OrdersRemoteDataSource>(
       () => _i492.OrdersRemoteDataSourceImpl(gh<_i518.ApiClient>()),
       registerFor: {_prod},
     );
-    gh.lazySingleton<_i870.LanguageRepository>(
-      () => _i326.LanguageRepositoryImpl(gh<_i400.LanguageLocalDataSource>()),
+    gh.lazySingleton<_i526.AuthRemoteDataSource>(
+      () => _i526.AuthRemoteDataSourceImpl(
+        gh<_i518.ApiClient>(),
+        gh<_i151.DeviceTypeReader>(),
+      ),
+      registerFor: {_prod},
     );
     gh.lazySingleton<_i904.AuthRepository>(
       () => _i752.AuthRepositoryImpl(
@@ -212,20 +248,17 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i65.DeliveryOrdersRepositoryImpl(gh<_i492.OrdersRemoteDataSource>()),
     );
+    gh.lazySingleton<_i286.ProfileRepository>(
+      () => _i1051.ProfileRepositoryImpl(
+        gh<_i777.ProfileLocalDataSource>(),
+        gh<_i181.ProfileRemoteDataSource>(),
+      ),
+    );
     gh.lazySingleton<_i249.SupportRepository>(
       () => _i348.SupportRepositoryImpl(gh<_i494.SupportRemoteDataSource>()),
     );
     gh.factory<_i436.LoginCubit>(
       () => _i436.LoginCubit(gh<_i932.RequestOtp>()),
-    );
-    gh.factory<_i247.GetSavedLanguage>(
-      () => _i247.GetSavedLanguage(gh<_i870.LanguageRepository>()),
-    );
-    gh.factory<_i517.SaveLanguage>(
-      () => _i517.SaveLanguage(gh<_i870.LanguageRepository>()),
-    );
-    gh.lazySingleton<_i286.ProfileRepository>(
-      () => _i1051.ProfileRepositoryImpl(gh<_i181.ProfileRemoteDataSource>()),
     );
     gh.factoryParam<_i688.OtpCubit, _i508.PhoneNumber, dynamic>(
       (phone, _) => _i688.OtpCubit(
@@ -251,12 +284,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i106.CompleteDelivery(gh<_i93.DeliveryOrdersRepository>()),
     );
     gh.factory<_i117.LogoutCubit>(() => _i117.LogoutCubit(gh<_i295.Logout>()));
-    gh.lazySingleton<_i536.LocaleCubit>(
-      () => _i536.LocaleCubit(
-        gh<_i247.GetSavedLanguage>(),
-        gh<_i517.SaveLanguage>(),
-      ),
-    );
     gh.factoryParam<_i782.OrdersListCubit, _i431.OrderListScope, dynamic>(
       (scope, _) => _i782.OrdersListCubit(gh<_i106.GetOrders>(), scope),
     );

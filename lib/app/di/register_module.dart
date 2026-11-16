@@ -6,6 +6,8 @@ import 'package:injectable/injectable.dart';
 import 'package:rayyan_driver/core/debug/api_log_inspector.dart';
 import 'package:rayyan_driver/core/network/app_config.dart';
 import 'package:rayyan_driver/core/network/interceptors/accept_language_interceptor.dart';
+import 'package:rayyan_driver/core/network/interceptors/api_debug_log_interceptor.dart';
+import 'package:rayyan_driver/core/network/interceptors/device_id_interceptor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Third-party instances that can't be annotated directly.
@@ -18,17 +20,26 @@ abstract class RegisterModule {
   FlutterSecureStorage get secureStorage => const FlutterSecureStorage();
 
   @lazySingleton
-  Dio dio(AcceptLanguageInterceptor acceptLanguage) {
+  Dio dio(
+    AcceptLanguageInterceptor acceptLanguage,
+    DeviceIdInterceptor deviceId,
+  ) {
     final dio = Dio(
       BaseOptions(
         baseUrl: AppConfig.apiBaseUrl,
         connectTimeout: AppConfig.connectTimeout,
         receiveTimeout: AppConfig.receiveTimeout,
         contentType: Headers.jsonContentType,
+        headers: const {Headers.acceptHeader: Headers.jsonContentType},
       ),
     );
-    // TODO(backend): add the auth header and token refresh interceptor.
+    // TODO(backend): add the session token and refresh interceptor.
+    // Login OTP sends basic auth from the env file.
     dio.interceptors.add(acceptLanguage);
+    dio.interceptors.add(deviceId);
+    if (AppConfig.enableLogs) {
+      dio.interceptors.add(ApiDebugLogInterceptor());
+    }
     final getIt = GetIt.instance;
     ApiLogInspector.attach(
       dio,

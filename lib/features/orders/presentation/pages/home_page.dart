@@ -45,15 +45,16 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final avatar = context.select(
-      (DriverProfileCubit c) => c.state.profile?.photoUrl,
+    final driver = context.select(
+      (DriverProfileCubit c) =>
+          (photo: c.state.profile?.photoUrl, name: c.state.profile?.name ?? ''),
     );
     const gutter = EdgeInsets.symmetric(horizontal: AppSpacing.screenGutter);
     return TintedScaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          HomeHeader(avatarUrl: avatar),
+          HomeHeader(avatarUrl: driver.photo, name: driver.name),
           const Padding(padding: gutter, child: OrderSearchBox()),
           const SizedBox(height: _sectionGap),
           Padding(

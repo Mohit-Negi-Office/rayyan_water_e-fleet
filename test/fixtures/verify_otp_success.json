@@ -1,0 +1,45 @@
+{
+  "code": 200,
+  "status": "OK",
+  "timestamp": 1794817403582,
+  "data": {
+    "session": {
+      "sessionId": "sess_01drv",
+      "token": "session-token",
+      "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIB-test\n-----END PUBLIC KEY-----\n",
+      "refreshToken": "refresh-token"
+    },
+    "driver": {
+      "name": "Suresh Nair",
+      "driverCode": "DRV1007",
+      "email": "driver.1007@example.com",
+      "phoneNo": "55001122",
+      "countryCode": "974",
+      "licenseNumber": "QL-00000000",
+      "nationality": "India",
+      "status": 1,
+      "vehicle": {
+        "vehicleType": "Van",
+        "vehicleNumber": "318238",
+        "vehicleModel": "Toyota Hiace",
+        "routeId": "RT-007"
+      },
+      "workDetails": {
+        "zones": [
+          {
+            "name": "Doha North",
+            "number": 1
+          }
+        ],
+        "availabilityStatus": 1
+      },
+      "emergencyContact": {
+        "contactName": "Family",
+        "contactNumber": "97400000000"
+      },
+      "driverId": "drv_1007",
+      "photo": ""
+    }
+  },
+  "error": null
+}

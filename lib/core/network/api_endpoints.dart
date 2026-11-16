@@ -1,8 +1,23 @@
 /// API paths, relative to [AppConfig.apiBaseUrl].
 // TODO(backend): confirm the driver API paths.
 abstract final class ApiEndpoints {
-  static const String authOtp = '/driver/auth/otp';
-  static const String authOtpVerify = '/driver/auth/otp/verify';
+  /// Header for the running platform: `IOS`, `ANDROID`, or `WEB`.
+  static const String deviceTypeHeader = 'device-type';
+
+  /// Static `aes-key` for OTP verify until key exchange exists.
+  static const String aesKeyHeader = 'aes-key';
+  static const String aesKey = 'adf';
+
+  /// Static `device-token` for OTP verify until push registration exists.
+  static const String deviceTokenHeader = 'device-token';
+  static const String deviceToken = 'adfasdf';
+
+  /// Login OTP: `POST /user-service/v1/otp/send`.
+  static const String authOtp = '/user-service/v1/otp/send';
+
+  /// Login OTP verify: `POST /user-service/v1/otp/verify`.
+  static const String authOtpVerify = '/user-service/v1/otp/verify';
+
   static const String profile = '/driver/me';
   static String policy(String type) => '/policies/$type';
   static const String faqs = '/driver/faqs';

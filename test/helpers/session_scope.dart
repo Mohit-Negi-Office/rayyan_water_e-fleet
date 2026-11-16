@@ -2,7 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rayyan_driver/app/session/auth_cubit.dart';
 import 'package:rayyan_driver/app/session/driver_profile_cubit.dart';
+import 'package:rayyan_driver/features/profile/data/datasources/profile_local_data_source.dart';
 import 'package:rayyan_driver/features/profile/data/datasources/profile_remote_data_source.dart';
+import 'package:rayyan_driver/features/profile/data/models/driver_details_model.dart';
 import 'package:rayyan_driver/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:rayyan_driver/features/profile/domain/usecases/get_profile.dart';
 
@@ -11,7 +13,9 @@ final class SessionCubits {
   SessionCubits()
     : auth = AuthCubit(),
       profile = DriverProfileCubit(
-        const GetProfile(ProfileRepositoryImpl(ProfileMockDataSource())),
+        const GetProfile(
+          ProfileRepositoryImpl(_NoStoredDriver(), ProfileMockDataSource()),
+        ),
       );
 
   final AuthCubit auth;
@@ -29,4 +33,11 @@ final class SessionCubits {
     await auth.close();
     await profile.close();
   }
+}
+
+final class _NoStoredDriver implements ProfileLocalDataSource {
+  const _NoStoredDriver();
+
+  @override
+  Future<DriverDetailsModel?> read() async => null;
 }

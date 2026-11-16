@@ -14,16 +14,13 @@ final class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Result<void>> requestOtp(PhoneNumber phone) =>
-      guard(() => _remote.requestOtp(phone.e164));
+      guard(() => _remote.requestOtp(phone.digits));
 
   @override
   Future<Result<void>> verifyOtp(PhoneNumber phone, String code) =>
       guard(() async {
-        final tokens = await _remote.verifyOtp(phone: phone.e164, code: code);
-        await _tokens.save(
-          accessToken: tokens.accessToken,
-          refreshToken: tokens.refreshToken,
-        );
+        final result = await _remote.verifyOtp(phone: phone.digits, code: code);
+        await _tokens.save(session: result.session, driver: result.driver);
       });
 
   @override

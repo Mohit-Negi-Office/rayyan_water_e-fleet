@@ -3,11 +3,23 @@ abstract final class StorageKeys {
   /// Selected app language code ("en" / "ar").
   static const String languageCode = 'app_language_code';
 
+  /// Stable id sent as the `device-id` header.
+  static const String deviceId = 'device_id';
+
   /// Auth access token (secure storage only).
   static const String accessToken = 'auth_access_token';
 
   /// Auth refresh token (secure storage only).
   static const String refreshToken = 'auth_refresh_token';
+
+  /// Server session id (secure storage only).
+  static const String sessionId = 'auth_session_id';
+
+  /// Server public key from OTP verify (secure storage only).
+  static const String publicKey = 'auth_public_key';
+
+  /// Signed-in driver JSON from OTP verify (secure storage only).
+  static const String driverProfile = 'auth_driver_profile';
 
   /// Recent product search terms (JSON list).
   static const String recentSearches = 'catalog_recent_searches';

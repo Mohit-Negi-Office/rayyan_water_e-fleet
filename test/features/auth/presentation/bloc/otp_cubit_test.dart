@@ -69,6 +69,13 @@ void main() {
         isTrue,
       );
       expect(
+        const OtpState(
+          phone: _phone,
+          failure: ServerFailure(code: 'OTP_INVALID'),
+        ).isIncorrect,
+        isTrue,
+      );
+      expect(
         const OtpState(phone: _phone, failure: NetworkFailure()).isIncorrect,
         isFalse,
       );

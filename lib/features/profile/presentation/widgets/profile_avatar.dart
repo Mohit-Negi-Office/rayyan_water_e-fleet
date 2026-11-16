@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:rayyan_driver/core/theme/theme_context_x.dart';
+import 'package:rayyan_driver/core/utils/name_initials.dart';
 import 'package:rayyan_driver/core/widgets/media/app_network_image.dart';
+import 'package:rayyan_driver/core/widgets/media/initials_text.dart';
 
 /// Round driver photo; [ring] adds the white 2pt ring of the Profile
-/// header (Figma `5000:105348`).
+/// header (Figma `5000:105348`). An empty [url] shows [name]'s initials.
 class ProfileAvatar extends StatelessWidget {
   const ProfileAvatar({
     required this.url,
     required this.size,
+    this.name = '',
     this.ring = 0,
     super.key,
   });
@@ -18,11 +21,14 @@ class ProfileAvatar extends StatelessWidget {
   static const double detailsSize = 100;
 
   final String? url;
+  final String name;
   final double size;
   final double ring;
 
   @override
   Widget build(BuildContext context) {
+    final photo = url?.trim() ?? '';
+    final initials = NameInitials.from(name);
     return Container(
       width: size + 2 * ring,
       height: size + 2 * ring,
@@ -32,7 +38,17 @@ class ProfileAvatar extends StatelessWidget {
         shape: BoxShape.circle,
       ),
       child: ClipOval(
-        child: AppNetworkImage(url: url, fit: BoxFit.cover),
+        child: photo.isEmpty && initials.isNotEmpty
+            ? InitialsText(
+                name: name,
+                style: context.textStyles.displayTitle.copyWith(
+                  color: context.colors.brand,
+                ),
+              )
+            : AppNetworkImage(
+                url: photo.isEmpty ? null : photo,
+                fit: BoxFit.cover,
+              ),
       ),
     );
   }

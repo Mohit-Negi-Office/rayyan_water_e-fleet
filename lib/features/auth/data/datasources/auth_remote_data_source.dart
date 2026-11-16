@@ -1,40 +1,65 @@
 import 'package:injectable/injectable.dart';
 import 'package:rayyan_driver/core/network/api_client.dart';
 import 'package:rayyan_driver/core/network/api_endpoints.dart';
+import 'package:rayyan_driver/core/network/app_config.dart';
 import 'package:rayyan_driver/core/network/app_environment.dart';
-import 'package:rayyan_driver/features/auth/data/models/auth_tokens_model.dart';
+import 'package:rayyan_driver/core/network/basic_authorization.dart';
+import 'package:rayyan_driver/core/network/device_type.dart';
+import 'package:rayyan_driver/features/auth/data/models/send_otp_request_model.dart';
+import 'package:rayyan_driver/features/auth/data/models/verify_otp_request_model.dart';
+import 'package:rayyan_driver/features/auth/data/models/verify_otp_result_model.dart';
 
 abstract interface class AuthRemoteDataSource {
-  /// [phone] in E.164 form ("+97455876543").
-  Future<void> requestOtp(String phone);
-  Future<AuthTokensModel> verifyOtp({
+  /// [phoneNumber] is the local digits the driver typed.
+  Future<void> requestOtp(String phoneNumber);
+
+  /// [phone] is the local digits the driver typed.
+  Future<VerifyOtpResultModel> verifyOtp({
     required String phone,
     required String code,
   });
 }
 
-// TODO(backend): confirm the driver auth API shape and error codes.
+// TODO(backend): confirm the OTP error codes.
 @LazySingleton(as: AuthRemoteDataSource, env: [AppEnvironment.prod])
 final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
-  const AuthRemoteDataSourceImpl(this._client);
+  const AuthRemoteDataSourceImpl(this._client, this._deviceType);
 
   final ApiClient _client;
+  final DeviceTypeReader _deviceType;
 
   @override
-  Future<void> requestOtp(String phone) => _client.post<Map<String, dynamic>>(
+  Future<void> requestOtp(String phoneNumber) => _client.postAllowingEmpty(
     ApiEndpoints.authOtp,
-    data: {'phone': phone},
+    data: SendOtpRequestModel.loginDriver(phoneNumber).toJson(),
+    headers: _basicAuthHeaders,
   );
 
   @override
-  Future<AuthTokensModel> verifyOtp({
+  Future<VerifyOtpResultModel> verifyOtp({
     required String phone,
     required String code,
   }) async {
     final json = await _client.post<Map<String, dynamic>>(
       ApiEndpoints.authOtpVerify,
-      data: {'phone': phone, 'code': code},
+      data: VerifyOtpRequestModel.loginDriver(
+        phoneNumber: phone,
+        otp: code,
+      ).toJson(),
+      headers: {
+        ..._basicAuthHeaders,
+        ApiEndpoints.deviceTypeHeader: _deviceType.read(),
+        ApiEndpoints.aesKeyHeader: ApiEndpoints.aesKey,
+        ApiEndpoints.deviceTokenHeader: ApiEndpoints.deviceToken,
+      },
     );
-    return AuthTokensModel.fromJson(json);
+    return VerifyOtpResultModel.fromBody(json);
   }
+
+  Map<String, dynamic> get _basicAuthHeaders => {
+    BasicAuthorization.header: BasicAuthorization.value(
+      username: AppConfig.basicAuthUsername,
+      password: AppConfig.basicAuthPassword,
+    ),
+  };
 }

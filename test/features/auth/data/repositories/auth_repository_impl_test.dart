@@ -5,7 +5,8 @@ import 'package:rayyan_driver/core/error/failure.dart';
 import 'package:rayyan_driver/core/error/result.dart';
 import 'package:rayyan_driver/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:rayyan_driver/features/auth/data/datasources/auth_token_local_data_source.dart';
-import 'package:rayyan_driver/features/auth/data/models/auth_tokens_model.dart';
+import 'package:rayyan_driver/features/auth/data/models/auth_session_model.dart';
+import 'package:rayyan_driver/features/auth/data/models/verify_otp_result_model.dart';
 import 'package:rayyan_driver/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:rayyan_driver/features/auth/domain/entities/phone_number.dart';
 
@@ -14,12 +15,24 @@ class _MockRemote extends Mock implements AuthRemoteDataSource {}
 class _MockTokens extends Mock implements AuthTokenLocalDataSource {}
 
 const _phone = PhoneNumber.qatar('55876543');
-const _tokens = AuthTokensModel(accessToken: 'a', refreshToken: 'r');
+const _session = AuthSessionModel(
+  sessionId: 'sess',
+  token: 'a',
+  publicKey: 'pk',
+  refreshToken: 'r',
+);
+const _driver = {'name': 'Suresh Nair', 'driverCode': 'DRV1007'};
+const _result = VerifyOtpResultModel(session: _session, driver: _driver);
 
 void main() {
   late _MockRemote remote;
   late _MockTokens tokens;
   late AuthRepositoryImpl repository;
+
+  setUpAll(() {
+    registerFallbackValue(_session);
+    registerFallbackValue(<String, dynamic>{});
+  });
 
   setUp(() {
     remote = _MockRemote();
@@ -27,27 +40,27 @@ void main() {
     repository = AuthRepositoryImpl(remote, tokens);
     when(
       () => tokens.save(
-        accessToken: any(named: 'accessToken'),
-        refreshToken: any(named: 'refreshToken'),
+        session: any(named: 'session'),
+        driver: any(named: 'driver'),
       ),
     ).thenAnswer((_) async {});
   });
 
-  test('requestOtp sends the number in E.164 form', () async {
+  test('requestOtp sends the digits the driver typed', () async {
     when(() => remote.requestOtp(any())).thenAnswer((_) async {});
     expect(await repository.requestOtp(_phone), const Success<void>(null));
-    verify(() => remote.requestOtp('+97455876543')).called(1);
+    verify(() => remote.requestOtp('55876543')).called(1);
   });
 
-  test('verifyOtp keeps the tokens', () async {
+  test('verifyOtp keeps the session and the driver', () async {
     when(
-      () => remote.verifyOtp(phone: '+97455876543', code: '2406'),
-    ).thenAnswer((_) async => _tokens);
+      () => remote.verifyOtp(phone: '55876543', code: '2406'),
+    ).thenAnswer((_) async => _result);
     expect(
       await repository.verifyOtp(_phone, '2406'),
       const Success<void>(null),
     );
-    verify(() => tokens.save(accessToken: 'a', refreshToken: 'r')).called(1);
+    verify(() => tokens.save(session: _session, driver: _driver)).called(1);
   });
 
   test('verifyOtp keeps the server code of a wrong OTP', () async {
@@ -56,30 +69,30 @@ void main() {
         phone: any(named: 'phone'),
         code: any(named: 'code'),
       ),
-    ).thenThrow(const ServerException('wrong', code: 'invalid_otp'));
+    ).thenThrow(const ServerException('wrong', code: 'OTP_INVALID'));
     expect(
       await repository.verifyOtp(_phone, '0000'),
-      const Err<void>(ServerFailure(code: 'invalid_otp')),
+      const Err<void>(ServerFailure(code: 'OTP_INVALID')),
     );
     verifyNever(
       () => tokens.save(
-        accessToken: any(named: 'accessToken'),
-        refreshToken: any(named: 'refreshToken'),
+        session: any(named: 'session'),
+        driver: any(named: 'driver'),
       ),
     );
   });
 
-  test('verifyOtp fails when the tokens cannot be kept', () async {
+  test('verifyOtp fails when the session cannot be kept', () async {
     when(
       () => remote.verifyOtp(
         phone: any(named: 'phone'),
         code: any(named: 'code'),
       ),
-    ).thenAnswer((_) async => _tokens);
+    ).thenAnswer((_) async => _result);
     when(
       () => tokens.save(
-        accessToken: any(named: 'accessToken'),
-        refreshToken: any(named: 'refreshToken'),
+        session: any(named: 'session'),
+        driver: any(named: 'driver'),
       ),
     ).thenThrow(const CacheException('locked'));
     expect(

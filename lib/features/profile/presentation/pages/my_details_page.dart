@@ -65,6 +65,7 @@ class _Details extends StatelessWidget {
           Center(
             child: ProfileAvatar(
               url: profile.photoUrl,
+              name: profile.name,
               size: ProfileAvatar.detailsSize,
             ),
           ),

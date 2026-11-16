@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:rayyan_driver/core/error/app_exception.dart';
+import 'package:rayyan_driver/core/network/models/api_response_model.dart';
 
 /// Converts a [DioException] into a typed [AppException].
 extension DioExceptionX on DioException {
@@ -23,9 +24,10 @@ extension DioExceptionX on DioException {
 
   AppException _fromResponse() {
     final statusCode = response?.statusCode;
-    final data = response?.data;
-    final body = data is Map<String, dynamic>
-        ? data
+    final envelope = ApiResponseModel.tryFrom(response?.data);
+    if (envelope != null) return _fromEnvelope(envelope, statusCode);
+    final body = response?.data is Map<String, dynamic>
+        ? response?.data as Map<String, dynamic>
         : const <String, dynamic>{};
     final code = body['code'] is String ? body['code'] as String : null;
     return switch (statusCode) {
@@ -38,6 +40,23 @@ extension DioExceptionX on DioException {
         message ?? 'Server error',
         statusCode: statusCode,
         code: code,
+      ),
+    };
+  }
+
+  AppException _fromEnvelope(ApiResponseModel envelope, int? statusCode) {
+    final type = envelope.error?.type;
+    final httpStatus = statusCode ?? envelope.code;
+    return switch (httpStatus) {
+      401 => UnauthorizedException(message ?? type ?? 'Unauthorized'),
+      422 => ValidationException(
+        message ?? type ?? 'Validation failed',
+        fieldErrors: _fieldErrors(envelope.error?.data),
+      ),
+      _ => ServerException(
+        message ?? type ?? 'Server error',
+        statusCode: httpStatus,
+        code: type,
       ),
     };
   }

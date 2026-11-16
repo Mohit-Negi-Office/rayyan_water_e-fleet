@@ -8,4 +8,10 @@ part 'env.g.dart';
 abstract class Env {
   @EnviedField(varName: 'BASE_URL', obfuscate: true)
   static String baseUrl = _Env.baseUrl;
+
+  @EnviedField(varName: 'BASIC_AUTH_USERNAME', obfuscate: true)
+  static String basicAuthUsername = _Env.basicAuthUsername;
+
+  @EnviedField(varName: 'BASIC_AUTH_PASSWORD', obfuscate: true)
+  static String basicAuthPassword = _Env.basicAuthPassword;
 }

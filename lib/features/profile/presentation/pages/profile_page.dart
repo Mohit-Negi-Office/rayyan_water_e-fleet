@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rayyan_driver/app/di/injection.dart';
 import 'package:rayyan_driver/app/session/auth_cubit.dart';
 import 'package:rayyan_driver/app/session/driver_profile_cubit.dart';
@@ -9,6 +10,7 @@ import 'package:rayyan_driver/core/l10n/l10n_x.dart';
 import 'package:rayyan_driver/core/theme/app_spacing.dart';
 import 'package:rayyan_driver/core/widgets/layout/curved_brand_header.dart';
 import 'package:rayyan_driver/core/widgets/layout/tinted_scaffold.dart';
+import 'package:rayyan_driver/core/widgets/navigation/app_top_bar.dart';
 import 'package:rayyan_driver/core/widgets/overlays/app_confirm_sheet.dart';
 import 'package:rayyan_driver/core/widgets/states/app_error_view.dart';
 import 'package:rayyan_driver/features/profile/presentation/bloc/logout_cubit.dart';
@@ -31,10 +33,14 @@ class ProfilePage extends StatelessWidget {
 }
 
 /// Profile content, separated from DI for testing.
+///
+/// The photo, name and driver code stay fixed. The menu scrolls only
+/// when it is taller than the space under them.
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
 
   /// Measured below the status bar.
+  static const double _backTop = 20;
   static const double _avatarTop = 49;
   static const double _nameGap = 10;
   static const double _menuGap = 20;
@@ -63,45 +69,91 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     final top = MediaQuery.paddingOf(context).top;
     final state = context.watch<DriverProfileCubit>().state;
-    final profile = state.profile;
+    final canPop = GoRouter.maybeOf(context)?.canPop() ?? false;
     return BlocListener<LogoutCubit, LogoutState>(
       listenWhen: (_, now) => now is LogoutDone,
       listener: (context, _) => context.read<AuthCubit>().signedOut(),
       child: TintedScaffold(
         body: Stack(
+          fit: StackFit.expand,
           children: [
-            CurvedBrandHeader(
-              crest: CurvedBrandHeader.profileCrest - _figmaStatusBar + top,
-            ),
-            ListView(
-              padding: EdgeInsets.fromLTRB(
-                AppSpacing.screenGutter,
-                top + _avatarTop,
-                AppSpacing.screenGutter,
-                AppSpacing.s6 + MediaQuery.paddingOf(context).bottom,
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: CurvedBrandHeader(
+                crest: CurvedBrandHeader.profileCrest - _figmaStatusBar + top,
               ),
+            ),
+            Column(
               children: [
-                Center(
-                  child: ProfileAvatar(
-                    url: profile?.photoUrl,
-                    size: ProfileAvatar.headerSize,
-                    ring: ProfileAvatar.headerRing,
+                _ProfileIdentity(state: state, top: top),
+                const SizedBox(height: _menuGap),
+                Expanded(
+                  child: ListView(
+                    physics: const ClampingScrollPhysics(),
+                    padding: EdgeInsets.fromLTRB(
+                      AppSpacing.screenGutter,
+                      0,
+                      AppSpacing.screenGutter,
+                      AppSpacing.s6 + MediaQuery.paddingOf(context).bottom,
+                    ),
+                    children: [
+                      ProfileMenu(onLogout: () => _confirmLogout(context)),
+                    ],
                   ),
                 ),
-                const SizedBox(height: _nameGap),
-                if (profile != null)
-                  ProfileNameBlock(name: profile.name, code: profile.code),
-                if (state case DriverProfileFailure(:final failure))
-                  AppErrorView.compact(
-                    failure: failure,
-                    onRetry: context.read<DriverProfileCubit>().load,
-                  ),
-                const SizedBox(height: _menuGap),
-                ProfileMenu(onLogout: () => _confirmLogout(context)),
               ],
             ),
+            if (canPop)
+              PositionedDirectional(
+                start: AppSpacing.screenGutter,
+                top: top + _backTop,
+                child: const AppBackButton.onBrand(),
+              ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Photo, name and driver code. Stays put while the menu scrolls.
+class _ProfileIdentity extends StatelessWidget {
+  const _ProfileIdentity({required this.state, required this.top});
+
+  final DriverProfileState state;
+  final double top;
+
+  @override
+  Widget build(BuildContext context) {
+    final profile = state.profile;
+    return Padding(
+      padding: EdgeInsets.fromLTRB(
+        AppSpacing.screenGutter,
+        top + ProfileView._avatarTop,
+        AppSpacing.screenGutter,
+        0,
+      ),
+      child: Column(
+        children: [
+          Center(
+            child: ProfileAvatar(
+              url: profile?.photoUrl,
+              name: profile?.name ?? '',
+              size: ProfileAvatar.headerSize,
+              ring: ProfileAvatar.headerRing,
+            ),
+          ),
+          const SizedBox(height: ProfileView._nameGap),
+          if (profile != null)
+            ProfileNameBlock(name: profile.name, code: profile.code),
+          if (state case DriverProfileFailure(:final failure))
+            AppErrorView.compact(
+              failure: failure,
+              onRetry: context.read<DriverProfileCubit>().load,
+            ),
+        ],
       ),
     );
   }

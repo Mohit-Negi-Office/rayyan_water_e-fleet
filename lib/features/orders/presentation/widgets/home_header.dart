@@ -8,14 +8,16 @@ import 'package:rayyan_driver/core/theme/app_radius.dart';
 import 'package:rayyan_driver/core/theme/app_spacing.dart';
 import 'package:rayyan_driver/core/theme/theme_context_x.dart';
 import 'package:rayyan_driver/core/utils/formatters/date_formatter.dart';
+import 'package:rayyan_driver/core/utils/name_initials.dart';
 import 'package:rayyan_driver/core/widgets/layout/curved_brand_header.dart';
 import 'package:rayyan_driver/core/widgets/media/app_network_image.dart';
+import 'package:rayyan_driver/core/widgets/media/initials_text.dart';
 import 'package:rayyan_driver/features/orders/presentation/bloc/current_time_cubit.dart';
 
 /// Home header (Figma `5665:38771`): logo, "Current Time" and the driver's
 /// photo, which opens Profile, on the curved navy pattern.
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({this.avatarUrl, super.key});
+  const HomeHeader({this.avatarUrl, this.name = '', super.key});
 
   /// Measured below the status bar.
   static const double _logoTop = 20;
@@ -26,6 +28,7 @@ class HomeHeader extends StatelessWidget {
   static const double _avatarSize = 42;
 
   final String? avatarUrl;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +70,7 @@ class HomeHeader extends StatelessWidget {
                     color: colors.brandElevated,
                     child: SizedBox.square(
                       dimension: _avatarSize,
-                      child: AppNetworkImage(url: avatarUrl, fit: BoxFit.cover),
+                      child: _Avatar(url: avatarUrl, name: name),
                     ),
                   ),
                 ),
@@ -81,6 +84,30 @@ class HomeHeader extends StatelessWidget {
 
   /// Status bar height in the Figma frame; the header follows the real one.
   static const double _figmaStatusBar = 59;
+}
+
+class _Avatar extends StatelessWidget {
+  const _Avatar({required this.url, required this.name});
+
+  final String? url;
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    final photo = url?.trim() ?? '';
+    if (photo.isEmpty && NameInitials.from(name).isNotEmpty) {
+      return InitialsText(
+        name: name,
+        style: context.textStyles.pageTitle.copyWith(
+          color: context.colors.onBrand,
+        ),
+      );
+    }
+    return AppNetworkImage(
+      url: photo.isEmpty ? null : photo,
+      fit: BoxFit.cover,
+    );
+  }
 }
 
 class _CurrentTime extends StatelessWidget {

@@ -49,6 +49,40 @@ void main() {
     });
   });
 
+  test('a rejected OTP keeps OTP_INVALID', () {
+    final error = _badResponse(400, {
+      'code': 400,
+      'status': 'BAD_REQUEST',
+      'timestamp': 1794816703130,
+      'data': null,
+      'error': {
+        'message': 'The code you entered is not valid. Please try again.',
+        'type': 'OTP_INVALID',
+        'data': null,
+      },
+    }).toAppException();
+
+    expect(error, isA<ServerException>());
+    final server = error as ServerException;
+    expect(server.statusCode, 400);
+    expect(server.code, 'OTP_INVALID');
+  });
+
+  test('an error envelope keeps the error type', () {
+    final error = _badResponse(400, {
+      'code': 400,
+      'status': 'BAD_REQUEST',
+      'timestamp': 1794810656970,
+      'data': null,
+      'error': {'type': 'INVALID_AUTHORIZATION_HEADER', 'data': null},
+    }).toAppException();
+
+    expect(error, isA<ServerException>());
+    final server = error as ServerException;
+    expect(server.statusCode, 400);
+    expect(server.code, 'INVALID_AUTHORIZATION_HEADER');
+  });
+
   test('other statuses become ServerException with status and code', () {
     final e = _badResponse(409, {'code': 'slot_unavailable'}).toAppException();
     expect(e, isA<ServerException>());

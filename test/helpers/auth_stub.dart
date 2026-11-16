@@ -3,6 +3,7 @@ import 'package:rayyan_driver/app/di/injection.dart';
 import 'package:rayyan_driver/core/utils/ticker.dart';
 import 'package:rayyan_driver/features/auth/data/datasources/auth_mock_data_source.dart';
 import 'package:rayyan_driver/features/auth/data/datasources/auth_token_local_data_source.dart';
+import 'package:rayyan_driver/features/auth/data/models/auth_session_model.dart';
 import 'package:rayyan_driver/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:rayyan_driver/features/auth/domain/entities/phone_number.dart';
 import 'package:rayyan_driver/features/auth/domain/usecases/request_otp.dart';
@@ -17,10 +18,19 @@ class _MockTokens extends Mock implements AuthTokenLocalDataSource {}
 /// ticks.
 void registerAuthStub() {
   final tokens = _MockTokens();
+  registerFallbackValue(
+    const AuthSessionModel(
+      sessionId: 'sess',
+      token: 'token',
+      publicKey: 'pk',
+      refreshToken: 'refresh',
+    ),
+  );
+  registerFallbackValue(<String, dynamic>{});
   when(
     () => tokens.save(
-      accessToken: any(named: 'accessToken'),
-      refreshToken: any(named: 'refreshToken'),
+      session: any(named: 'session'),
+      driver: any(named: 'driver'),
     ),
   ).thenAnswer((_) async {});
   final repo = AuthRepositoryImpl(const AuthMockDataSource(), tokens);

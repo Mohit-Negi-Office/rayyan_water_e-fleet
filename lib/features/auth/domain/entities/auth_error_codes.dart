@@ -1,6 +1,8 @@
 /// `ServerFailure.code`s the login screens show specific copy for.
-// TODO(backend): align with the API error codes.
+// TODO(backend): confirm the rejected-phone error type.
 abstract final class AuthErrorCodes {
   static const String invalidPhone = 'invalid_phone';
-  static const String invalidOtp = 'invalid_otp';
+
+  /// `error.type` when the OTP is wrong.
+  static const String invalidOtp = 'OTP_INVALID';
 }

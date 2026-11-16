@@ -24,6 +24,12 @@ abstract final class AppConfig {
   /// API base URL from the loaded env file.
   static String get apiBaseUrl => Env.baseUrl;
 
+  /// Basic-auth user for the login OTP call.
+  static String get basicAuthUsername => Env.basicAuthUsername;
+
+  /// Basic-auth password for the login OTP call.
+  static String get basicAuthPassword => Env.basicAuthPassword;
+
   /// Fleet support line behind "Contact Us" and "Contact Support":
   /// `--dart-define=SUPPORT_PHONE=+974...`.
   // TODO(team): confirm the fleet support number.
