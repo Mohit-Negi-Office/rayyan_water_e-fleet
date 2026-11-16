@@ -4321,6 +4321,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select a reason for this failed delivery.'**
   String get failReasonRequired;
+
+  /// No description provided for @debugOpenLogs.
+  ///
+  /// In en, this message translates to:
+  /// **'Open logs'**
+  String get debugOpenLogs;
+
+  /// No description provided for @debugOpenLogsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Debug: tap to open API request logs'**
+  String get debugOpenLogsHint;
 }
 
 class _AppLocalizationsDelegate

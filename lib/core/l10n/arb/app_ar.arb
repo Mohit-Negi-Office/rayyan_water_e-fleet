@@ -879,5 +879,7 @@
   "detailsZone": "المنطقة",
   "detailsRouteId": "رقم المسار",
   "detailsVehicleNumber": "رقم المركبة",
-  "failReasonRequired": "اختر سبب فشل هذا التوصيل."
+  "failReasonRequired": "اختر سبب فشل هذا التوصيل.",
+  "debugOpenLogs": "فتح السجلات",
+  "debugOpenLogsHint": "تصحيح: اضغط لفتح سجل طلبات الشبكة"
 }

@@ -2479,4 +2479,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get failReasonRequired => 'اختر سبب فشل هذا التوصيل.';
+
+  @override
+  String get debugOpenLogs => 'فتح السجلات';
+
+  @override
+  String get debugOpenLogsHint => 'تصحيح: اضغط لفتح سجل طلبات الشبكة';
 }

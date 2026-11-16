@@ -9,6 +9,7 @@ import 'package:rayyan_driver/app/session/auth_state.dart';
 import 'package:rayyan_driver/app/session/driver_profile_cubit.dart';
 import 'package:rayyan_driver/core/l10n/generated/app_localizations.dart';
 import 'package:rayyan_driver/core/theme/app_theme.dart';
+import 'package:rayyan_driver/core/widgets/overlays/debug_tools_overlay.dart';
 
 /// Root widget: app-wide Blocs, theme, localization and router.
 class RayyanDriverApp extends StatelessWidget {
@@ -17,6 +18,7 @@ class RayyanDriverApp extends StatelessWidget {
     required this.localeCubit,
     required this.authCubit,
     required this.profileCubit,
+    this.onOpenLogs,
     super.key,
   });
 
@@ -24,6 +26,9 @@ class RayyanDriverApp extends StatelessWidget {
   final LocaleCubit localeCubit;
   final AuthCubit authCubit;
   final DriverProfileCubit profileCubit;
+
+  /// Opens the API inspector. Null on production, which hides the chip.
+  final Future<void> Function()? onOpenLogs;
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +44,17 @@ class RayyanDriverApp extends StatelessWidget {
           AuthAuthenticated() => profileCubit.load(),
           AuthSignedOut() => profileCubit.clear(),
         },
-        child: _AppView(router: router),
+        child: _AppView(router: router, onOpenLogs: onOpenLogs),
       ),
     );
   }
 }
 
 class _AppView extends StatelessWidget {
-  const _AppView({required this.router});
+  const _AppView({required this.router, required this.onOpenLogs});
 
   final GoRouter router;
+  final Future<void> Function()? onOpenLogs;
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +71,12 @@ class _AppView extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      builder: (context, child) {
+        final content = child ?? const SizedBox.shrink();
+        final onOpenLogs = this.onOpenLogs;
+        if (onOpenLogs == null) return content;
+        return DebugToolsOverlay(onOpenLogs: onOpenLogs, child: content);
+      },
       routerConfig: router,
     );
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rayyan_driver/app/router/app_redirect.dart';
 import 'package:rayyan_driver/app/router/app_routes.dart';
@@ -13,9 +14,11 @@ import 'package:rayyan_driver/app/session/auth_state.dart';
 /// Builds the app router. Re-evaluates redirects on session changes.
 GoRouter createAppRouter({
   required AuthCubit authCubit,
+  GlobalKey<NavigatorState>? navigatorKey,
   String? initialLocation,
 }) {
   return GoRouter(
+    navigatorKey: navigatorKey,
     initialLocation: initialLocation ?? AppRoutes.splash.path,
     refreshListenable: StreamListenable(authCubit.stream),
     redirect: (context, state) => AppRedirect.resolve(

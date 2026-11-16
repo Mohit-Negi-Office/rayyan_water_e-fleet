@@ -43,6 +43,7 @@ Status: _planned_ until implemented — then remove the italics and fill the pat
 | AppChoiceSheet / AppSheetNote | `overlays/app_choice_sheet.dart` | Deliver Until, Delivery Slot, Cancel Delivery, Select Resume Date sheets | 16pt title, options, optional `footer` and a full-width action; `AppSheetNote` is the red ⓘ line |
 | AppActionSheet / AppActionTile | `overlays/app_action_sheet.dart` | Upload an Image, address Edit / Delete; `.menu` for Profile and Policies rows | Optional title over rows with icon and chevron; `isDestructive`; `AppActionTile.menu` is borderless with 20pt icons and an 8pt gap |
 | AppConfirmSheet | `overlays/app_confirm_sheet.dart` | Remove favourite, outside delivery area, delete address | Illustration, title, message, one action; `AppConfirmSheet.show` resolves to true when tapped |
+| DebugToolsOverlay | `overlays/debug_tools_overlay.dart` | — | Dev and staging “Open logs” chip. Hidden when `onOpenLogs` is null (production) |
 | AppLoadingView | `states/app_loading_view.dart` | — | full / `.compact` |
 | AppEmptyView | `states/app_empty_view.dart` | empty cart (30), No Favourites, No Location, No Saved cards, Illustrations (11) | illustration, title, message, action |
 | AppErrorView | `states/app_error_view.dart` | — | failure, onRetry, `.compact`; Retry hidden for non-retryable failures |

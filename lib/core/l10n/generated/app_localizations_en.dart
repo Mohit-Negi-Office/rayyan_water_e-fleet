@@ -2479,4 +2479,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get failReasonRequired => 'Select a reason for this failed delivery.';
+
+  @override
+  String get debugOpenLogs => 'Open logs';
+
+  @override
+  String get debugOpenLogsHint => 'Debug: tap to open API request logs';
 }

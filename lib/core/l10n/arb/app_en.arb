@@ -1557,5 +1557,7 @@
   "detailsZone": "Zone",
   "detailsRouteId": "Route ID",
   "detailsVehicleNumber": "Vehicle Number",
-  "failReasonRequired": "Select a reason for this failed delivery."
+  "failReasonRequired": "Select a reason for this failed delivery.",
+  "debugOpenLogs": "Open logs",
+  "debugOpenLogsHint": "Debug: tap to open API request logs"
 }
