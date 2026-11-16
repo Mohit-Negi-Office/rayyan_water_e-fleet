@@ -8,9 +8,13 @@ import 'package:rayyan_driver/core/network/api_client.dart';
 import 'package:rayyan_driver/core/network/api_endpoints.dart';
 import 'package:rayyan_driver/core/network/app_config.dart';
 import 'package:rayyan_driver/core/network/basic_authorization.dart';
+import 'package:rayyan_driver/core/network/bearer_authorization.dart';
 import 'package:rayyan_driver/core/network/device_id_store.dart';
 import 'package:rayyan_driver/core/network/device_type.dart';
+import 'package:rayyan_driver/core/network/interceptors/bearer_auth_interceptor.dart';
 import 'package:rayyan_driver/core/network/interceptors/device_id_interceptor.dart';
+import 'package:rayyan_driver/core/storage/secure_storage.dart';
+import 'package:rayyan_driver/core/storage/storage_keys.dart';
 import 'package:rayyan_driver/features/auth/data/datasources/auth_remote_data_source.dart';
 
 import '../../../../helpers/fixture.dart';
@@ -30,6 +34,11 @@ void main() {
     );
     dio.httpClientAdapter = adapter;
     dio.interceptors.add(DeviceIdInterceptor(const _FixedDeviceId()));
+    dio.interceptors.add(
+      BearerAuthInterceptor(
+        _MemoryStorage({StorageKeys.accessToken: 'session-token'}),
+      ),
+    );
     source = AuthRemoteDataSourceImpl(ApiClient(dio), const _FixedDeviceType());
   });
 
@@ -117,6 +126,25 @@ void main() {
     );
   });
 
+  test('posts an empty logout with the bearer token', () async {
+    adapter.body = '';
+    await source.logout();
+    final options = adapter.options!;
+
+    expect(options.method, 'POST');
+    expect(
+      options.uri.toString(),
+      'https://api-dev.rayyanwater.com${ApiEndpoints.driverLogout}',
+    );
+    expect(options.data, '');
+    expect(options.headers['device-id'], 'device-123');
+    expect(options.headers[Headers.acceptHeader], Headers.jsonContentType);
+    expect(
+      options.headers[BasicAuthorization.header],
+      BearerAuthorization.value('session-token'),
+    );
+  });
+
   test('throws when the server rejects the number', () {
     adapter.statusCode = 400;
     adapter.body = '{"code":"invalid_phone"}';
@@ -139,6 +167,21 @@ final class _FixedDeviceId implements DeviceIdStore {
 
   @override
   Future<String> fetch() async => 'device-123';
+}
+
+final class _MemoryStorage implements SecureStorage {
+  _MemoryStorage(this._values);
+
+  final Map<String, String> _values;
+
+  @override
+  Future<String?> read(String key) async => _values[key];
+
+  @override
+  Future<void> write(String key, String value) async => _values[key] = value;
+
+  @override
+  Future<void> delete(String key) async => _values.remove(key);
 }
 
 final class _FixedDeviceType implements DeviceTypeReader {

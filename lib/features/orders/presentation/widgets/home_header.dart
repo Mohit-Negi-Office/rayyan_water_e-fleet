@@ -11,11 +11,13 @@ import 'package:rayyan_driver/core/utils/formatters/date_formatter.dart';
 import 'package:rayyan_driver/core/utils/name_initials.dart';
 import 'package:rayyan_driver/core/widgets/layout/curved_brand_header.dart';
 import 'package:rayyan_driver/core/widgets/media/app_network_image.dart';
+import 'package:rayyan_driver/core/widgets/media/driver_photo_hero.dart';
 import 'package:rayyan_driver/core/widgets/media/initials_text.dart';
 import 'package:rayyan_driver/features/orders/presentation/bloc/current_time_cubit.dart';
 
 /// Home header (Figma `5665:38771`): logo, "Current Time" and the driver's
-/// photo, which opens Profile, on the curved navy pattern.
+/// photo, which opens Profile, on the curved navy pattern. The photo shares
+/// a [DriverPhotoHero] with the Profile header.
 class HomeHeader extends StatelessWidget {
   const HomeHeader({this.avatarUrl, this.name = '', super.key});
 
@@ -64,13 +66,15 @@ class HomeHeader extends StatelessWidget {
               label: l10n.profileTitle,
               child: GestureDetector(
                 onTap: () => context.pushNamed(AppRoutes.profile.name),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(AppRadius.card),
-                  child: ColoredBox(
-                    color: colors.brandElevated,
-                    child: SizedBox.square(
-                      dimension: _avatarSize,
-                      child: _Avatar(url: avatarUrl, name: name),
+                child: DriverPhotoHero(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(AppRadius.card),
+                    child: ColoredBox(
+                      color: colors.brandElevated,
+                      child: SizedBox.square(
+                        dimension: _avatarSize,
+                        child: _Avatar(url: avatarUrl, name: name),
+                      ),
                     ),
                   ),
                 ),

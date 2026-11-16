@@ -12,6 +12,7 @@ import 'package:rayyan_driver/core/l10n/l10n_x.dart';
 import 'package:rayyan_driver/core/theme/app_spacing.dart';
 import 'package:rayyan_driver/core/widgets/layout/curved_brand_header.dart';
 import 'package:rayyan_driver/core/widgets/layout/tinted_scaffold.dart';
+import 'package:rayyan_driver/core/widgets/media/driver_photo_hero.dart';
 import 'package:rayyan_driver/core/widgets/navigation/app_top_bar.dart';
 import 'package:rayyan_driver/core/widgets/overlays/app_confirm_sheet.dart';
 import 'package:rayyan_driver/core/widgets/states/app_error_view.dart';
@@ -21,7 +22,8 @@ import 'package:rayyan_driver/features/profile/presentation/widgets/profile_avat
 import 'package:rayyan_driver/features/profile/presentation/widgets/profile_menu.dart';
 
 /// Profile (Figma `5000:105288`): photo, name and ID on the curved header,
-/// then the menu. Logout asks first (`5000:105534`).
+/// then the menu. The photo flies in from Home via [DriverPhotoHero].
+/// Logout asks first (`5000:105534`).
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -163,11 +165,13 @@ class _ProfileIdentity extends StatelessWidget {
       child: Column(
         children: [
           Center(
-            child: ProfileAvatar(
-              url: profile?.photoUrl,
-              name: profile?.name ?? '',
-              size: ProfileAvatar.headerSize,
-              ring: ProfileAvatar.headerRing,
+            child: DriverPhotoHero(
+              child: ProfileAvatar(
+                url: profile?.photoUrl,
+                name: profile?.name ?? '',
+                size: ProfileAvatar.headerSize,
+                ring: ProfileAvatar.headerRing,
+              ),
             ),
           ),
           const SizedBox(height: ProfileView._nameGap),

@@ -37,6 +37,7 @@ Status: _planned_ until implemented — then remove the italics and fill the pat
 | CarouselDots | `media/carousel_dots.dart` | Carousels | active/inactive dots in white pill |
 | AppNetworkImage | `media/app_network_image.dart` | Product / banner photos | Cached network image with a placeholder when the URL is null or fails; `assets/` paths (bundled mock images) load from the bundle |
 | InitialsText | `media/initials_text.dart` | Empty driver photo | First and last initials ("Mohit Nagi" → "MN"); caller supplies the text style |
+| DriverPhotoHero | `media/driver_photo_hero.dart` | Home photo → Profile photo | One hero tag so the driver photo flies between the Home header and the Profile header, including the back gesture |
 | AppIcon | `media/app_icon.dart` | All Figma icons (`assets/icons/figma/`) | `asset` path from `AppIcons`, `size`, `color` (falls back to `IconTheme`), `matchTextDirection` for RTL arrows, `tint: false` for multicolour marks (Google, Apple); centred, never stretched, inside a larger fixed box |
 | AppIllustration | `media/app_illustration.dart` | Empty states, confirm sheets (open box, torn ticket, folded map, bin) | `AppImages` illustration at `emptyState` (192) or `sheet` (120) size |
 | showAppBottomSheet / AppSheetFrame | `overlays/app_bottom_sheet.dart` | Filter, Upload an Image, outside-area and remove sheets | Floating grey close button, tinted top; close with `context.pop()` |

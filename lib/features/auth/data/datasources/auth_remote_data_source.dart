@@ -18,6 +18,10 @@ abstract interface class AuthRemoteDataSource {
     required String phone,
     required String code,
   });
+
+  /// Ends the session on the server. Bearer auth and `device-id` come from
+  /// the shared interceptors; the body is empty.
+  Future<void> logout();
 }
 
 // TODO(backend): confirm the OTP error codes.
@@ -55,6 +59,10 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     );
     return VerifyOtpResultModel.fromBody(json);
   }
+
+  @override
+  Future<void> logout() =>
+      _client.postAllowingEmpty(ApiEndpoints.driverLogout, data: '');
 
   Map<String, dynamic> get _basicAuthHeaders => {
     BasicAuthorization.header: BasicAuthorization.value(

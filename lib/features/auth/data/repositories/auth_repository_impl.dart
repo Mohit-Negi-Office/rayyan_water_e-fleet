@@ -26,7 +26,13 @@ final class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Result<bool>> hasSession() => guard(_tokens.hasAccessToken);
 
-  // TODO(backend): tell the server to revoke the refresh token.
+  /// Tells the server first, while the access token is still stored, then
+  /// forgets the session on the device even when that call fails.
   @override
-  Future<Result<void>> logout() => guard(_tokens.clear);
+  Future<Result<void>> logout() async {
+    final notified = await guard(_remote.logout);
+    final cleared = await guard(_tokens.clear);
+    if (cleared case Err()) return cleared;
+    return notified;
+  }
 }

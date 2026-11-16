@@ -56,4 +56,7 @@ final class AuthMockDataSource implements AuthRemoteDataSource {
       driver: driver,
     );
   }
+
+  @override
+  Future<void> logout() => Future<void>.delayed(_latency);
 }

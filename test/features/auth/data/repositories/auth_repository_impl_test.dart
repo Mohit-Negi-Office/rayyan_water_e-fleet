@@ -101,9 +101,17 @@ void main() {
     );
   });
 
-  test('logout forgets the tokens', () async {
+  test('logout tells the server then forgets the tokens', () async {
+    when(() => remote.logout()).thenAnswer((_) async {});
     when(() => tokens.clear()).thenAnswer((_) async {});
     expect(await repository.logout(), const Success<void>(null));
+    verifyInOrder([() => remote.logout(), () => tokens.clear()]);
+  });
+
+  test('logout forgets the tokens when the server call fails', () async {
+    when(() => remote.logout()).thenThrow(const NetworkException('offline'));
+    when(() => tokens.clear()).thenAnswer((_) async {});
+    expect(await repository.logout(), const Err<void>(NetworkFailure()));
     verify(() => tokens.clear()).called(1);
   });
 

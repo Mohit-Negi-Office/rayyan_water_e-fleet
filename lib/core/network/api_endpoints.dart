@@ -20,6 +20,9 @@ abstract final class ApiEndpoints {
 
   /// Signed-in driver: `GET /user-service/v1/profile/driver`.
   static const String profile = '/user-service/v1/profile/driver';
+
+  /// End the driver session: `POST /user-service/v1/session/driver/logout`.
+  static const String driverLogout = '/user-service/v1/session/driver/logout';
   static String policy(String type) => '/policies/$type';
   static const String faqs = '/driver/faqs';
 
